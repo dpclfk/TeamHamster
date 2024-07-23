@@ -10,7 +10,11 @@ export default async (req: Request, res: Response) => {
     //   throw Error("point precent");
     // }
 
+<<<<<<< HEAD
     await point.create({ pointPercent: reqbody.point });
+=======
+    await point.create({ userId: reqbody.user.id, pointPercent: reqbody.point });
+>>>>>>> 1ef3a6f (feat:deliverycompelete,authority)
 
     res.json({ result: "ok" });
   } catch (err: any) {
