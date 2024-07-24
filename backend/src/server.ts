@@ -54,7 +54,7 @@ const basicvalue = async () => {
 
       const encryptionpw = crypto
         .createHash("sha512")
-        .update(`admin1 + ${process.env.SALT}`)
+        .update(`admin1${process.env.SALT}`)
         .digest("hex");
 
       const store = await Store.create({
