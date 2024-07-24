@@ -11,6 +11,7 @@ export default async (req: Request, res: Response) => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     await point.create({ pointPercent: reqbody.point });
 =======
     await point.create({ userId: reqbody.user.id, pointPercent: reqbody.point });
@@ -21,6 +22,12 @@ export default async (req: Request, res: Response) => {
     await point.create({ pointPercent: reqbody.point });
 >>>>>>> 5e55976 (feat:save)
 >>>>>>> 7b2850e (feat:save)
+=======
+    await point.create({
+      userId: reqbody.user.id,
+      pointPercent: reqbody.point,
+    });
+>>>>>>> c5f910a (feat:fixx)
 
     res.json({ result: "ok" });
   } catch (err: any) {
