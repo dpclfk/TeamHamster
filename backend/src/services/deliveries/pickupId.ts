@@ -23,7 +23,10 @@ export default async (req: Request, res: Response) => {
     }
     for (let i = 0; i < waitepickup.length; i++) {
       waitepickup[i].update({ itemState: "픽업중" });
-      delivery.create({ userId: reqbody.user.id, productId: waitepickup[i].id });
+      delivery.create({
+        userId: reqbody.user.id,
+        productId: waitepickup[i].id,
+      });
     }
 
     res.json({ result: "ok" });

@@ -17,7 +17,6 @@ const deliveryscham = new Schema(
 
 const pointscham = new Schema(
   {
-    userId: Number,
     pointPercent: Number,
   },
   {

@@ -6,7 +6,7 @@ export default async (req: Request, res: Response) => {
   try {
     const reqbody = req.body;
     // const deliveryfind: any = await delivery.find({ userId: 1 }).distinct("productId");
-
+    console.log(reqbody);
     const deliveryfind: any = await delivery
       .find({ userId: reqbody.user.id })
       .distinct("productId");
