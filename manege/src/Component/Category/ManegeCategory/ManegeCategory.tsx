@@ -7,12 +7,17 @@ interface IData {
   category: ICate[];
 }
 
+interface IData {
+  category: ICate[];
+}
+
 interface IProps {
   settopcate: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
 const ManegeCategoryList = ({ settopcate }: IProps): JSX.Element => {
   const [cate, setcate] = useState<number>();
+
   const [selectcate1, setselectcate1] = useState<number>(0);
   const [selectcate2, setselectcate2] = useState<number>(0);
   const [data2, setdata2] = useState<ICate[]>([]);
@@ -23,6 +28,7 @@ const ManegeCategoryList = ({ settopcate }: IProps): JSX.Element => {
     queryFn: async () => {
       const { data } = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/catefirst`,
+
         {
           withCredentials: true,
         }
@@ -30,6 +36,7 @@ const ManegeCategoryList = ({ settopcate }: IProps): JSX.Element => {
       return data;
     },
   });
+
 
   const secondcate = async () => {
     await axios
@@ -63,6 +70,7 @@ const ManegeCategoryList = ({ settopcate }: IProps): JSX.Element => {
       });
   };
 
+
   console.log(`cate:${cate}`);
   console.log(`cate1:${selectcate1}`);
   console.log(`cate2:${selectcate2}`);
@@ -90,7 +98,9 @@ const ManegeCategoryList = ({ settopcate }: IProps): JSX.Element => {
       <div className="h-[100%] flex-1 border-e overflow-y-auto">
         <div className="p-2">
           {selectcate1 !== undefined &&
+
             data2.map((item: ICate, idx: number) => (
+
               <CateItem
                 key={idx}
                 item={item}
@@ -103,7 +113,9 @@ const ManegeCategoryList = ({ settopcate }: IProps): JSX.Element => {
       <div className="h-[100%] flex-1 overflow-y-auto">
         <div className="p-2">
           {selectcate2 !== undefined &&
+
             data3.map((item: ICate, idx: number) => (
+
               <CateItem key={idx} item={item} setcate={setcate} />
             ))}
         </div>

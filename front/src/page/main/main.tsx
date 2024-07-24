@@ -40,6 +40,7 @@ const Main = ({ list }: IProps): JSX.Element => {
     }
   };
 
+
   // const getrecent = async () => {
   //   await axios.post(
   //     `${process.env.REACT_APP_SERVER_URL}/recent`,
@@ -48,11 +49,14 @@ const Main = ({ list }: IProps): JSX.Element => {
   //   );
   // };
 
+
   const cookie = false;
 
   useEffect(() => {
     save();
+
     // getrecent();
+
   }, []);
 
   return (

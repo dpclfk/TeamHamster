@@ -10,6 +10,7 @@ import { IReportUser } from "../../Component/List/ManegeList/User/ReportUser/Use
 import { IBenUser } from "../../Component/List/ManegeList/User/Ben/BenItem";
 import { ChangeEvent, useCallback, useState } from "react";
 
+
 interface IData {
   userlist: [
     {
@@ -32,6 +33,7 @@ interface IData {
 }
 
 interface IBen {
+
   block: [
     {
       id: number;
@@ -50,6 +52,7 @@ const ManegeUser = ({}: IProps): JSX.Element => {
   const bensearch = (e: ChangeEvent<HTMLInputElement>) => {
     setsearch(e.target.value);
   };
+
 
   const manylist = useQuery({
     queryKey: "manydata",
@@ -85,6 +88,7 @@ const ManegeUser = ({}: IProps): JSX.Element => {
     mutationKey: ["searchben"],
     mutationFn: async () => {
       const { data } = await axios.post(
+
         `${process.env.REACT_APP_SERVER_URL}/admin/userblocksearch`,
         {
           keyword: search,
@@ -105,10 +109,12 @@ const ManegeUser = ({}: IProps): JSX.Element => {
     <div className={`${box} ${center}`}>
       <div>
         <div className=" h-[20rem] w-[70rem] border border-gray-400 overflow-y-auto">
+
           <ReportUser data={manylist.data} />
         </div>
         <div className="mt-20 h-[20rem] w-[70rem] border border-gray-400 overflow-y-auto">
           <Ben data={searchlist == undefined ? blocklist.data : searchlist} />
+
         </div>
         <div className="mt-[10rem] mb-[10rem]  flex justify-between items-center">
           <div className="h-[4rem] ">

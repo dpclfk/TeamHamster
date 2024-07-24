@@ -9,6 +9,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { IReport } from "../../Component/List/ManegeList/Report/ReportItem";
 
 interface IData {
+
   report: [
     {
       id: number;
@@ -31,6 +32,7 @@ interface IProduct {
       nick: string;
     };
   };
+
 }
 
 interface IProps {}
@@ -43,15 +45,18 @@ const ManegeReport = ({}: IProps): JSX.Element => {
     setuser(e.target.value);
   }, []);
 
+
   const sumit = useMutation({
     mutationKey: "searchreport",
     mutationFn: async () => {
+
       await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/admin/reportsearch`,
         {
           keyword: user,
         }
       );
+
     },
     onSuccess(data) {
       queryClient.setQueriesData(["searchreport"], data);
@@ -76,6 +81,7 @@ const ManegeReport = ({}: IProps): JSX.Element => {
       });
 
       return reportlist;
+
     },
   });
 
@@ -87,7 +93,7 @@ const ManegeReport = ({}: IProps): JSX.Element => {
     <div className={`${box} ${center}`}>
       <div>
         <div className=" h-[30rem] w-[70rem] border border-gray-400 overflow-y-scroll">
-          <Report data={data} />
+          <Report data={data?.report} />
         </div>
         <div className="mt-[10rem] mb-[10rem]  flex justify-between items-center">
           <div className="h-[4rem] ">

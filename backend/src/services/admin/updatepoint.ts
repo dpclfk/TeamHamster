@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Store } from "../../models";
 import { point } from "../../models/mongoDB";
 
 export default async (req: Request, res: Response) => {
@@ -10,7 +9,8 @@ export default async (req: Request, res: Response) => {
     //   throw Error("point precent");
     // }
 
-    await point.create({ pointPercent: reqbody.point });
+    await point.create({ userId: reqbody.user.id, pointPercent: reqbody.point });
+
 
     res.json({ result: "ok" });
   } catch (err: any) {

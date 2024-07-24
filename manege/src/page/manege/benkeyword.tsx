@@ -51,6 +51,7 @@ const ManegeBenKeyword = ({}: IProps): JSX.Element => {
       );
       const keywordlist = data.keyword;
 
+
       return keywordlist;
     },
   });
@@ -58,11 +59,14 @@ const ManegeBenKeyword = ({}: IProps): JSX.Element => {
   const Data: IKeyword[] | undefined = queryClient.getQueryData(["benlist"]);
   console.log(Data);
 
+
   return (
     <div className={`${box} ${center}`}>
       <div>
         <div className=" h-[30rem] w-[70rem] border border-gray-400 overflow-y-auto">
+
           {Data ? <BenKeyWord data={Data} /> : ""}
+
         </div>
         <div className="mt-[10rem] mb-[10rem]  flex justify-between items-center">
           <div className="h-[4rem] ">

@@ -50,6 +50,7 @@ const Layout = ({ main }: IProps): JSX.Element => {
     setModal("mobilemenu");
   };
 
+
   // const user = useQuery<IUser>({
   //   queryKey: "usercheck",
   //   queryFn: async () => {
@@ -72,6 +73,7 @@ const Layout = ({ main }: IProps): JSX.Element => {
   // }
 
   const userlogin = true;
+
   const location = useLocation();
   useEffect(() => {
     setModal(undefined);

@@ -20,11 +20,13 @@ const ManegeCategory = ({}: IProps): JSX.Element => {
     setcreatecate(e.target.value);
   }, []);
 
+
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
     mutationKey: ["addcate"],
     mutationFn: async () => {
+
       await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/admin/createcategory`,
         {
@@ -32,11 +34,13 @@ const ManegeCategory = ({}: IProps): JSX.Element => {
           name: createcate,
         }
       );
+
     },
     onSuccess(data) {
       queryClient.invalidateQueries({ queryKey: "firstcate" });
     },
   });
+
 
   return (
     <div className={`$${box} pb-10`}>

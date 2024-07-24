@@ -13,6 +13,14 @@ interface IData {
   point: IPoint;
 }
 
+interface IPoint {
+  pointPercent: number;
+}
+
+interface IData {
+  point: IPoint;
+}
+
 interface IProps {}
 
 const ManegePoint = ({}: IProps): JSX.Element => {
@@ -61,6 +69,7 @@ const ManegePoint = ({}: IProps): JSX.Element => {
     },
   });
 
+
   return (
     <div className={`${box}`}>
       <div className={`${center} flex-col`}>
@@ -68,8 +77,10 @@ const ManegePoint = ({}: IProps): JSX.Element => {
           <div className="h-[4rem] ">
             <input
               placeholder="1000원당 포인트 액수"
+
               type="number"
               className="p-3 h-[100%] w-[30rem] border border-gray-400 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+
               onInput={changepoint}
             ></input>
           </div>
@@ -85,7 +96,9 @@ const ManegePoint = ({}: IProps): JSX.Element => {
           <div>현재 포인트 비율: </div>
           <div>
             <span className="text-orange-500">1000</span> 원 당
+
             <span className="text-orange-500">{data?.point.pointPercent}</span>
+
             포인트
           </div>
         </div>

@@ -3,7 +3,9 @@ import { SmallButton } from "../../Component/Button/Button";
 import { Button } from "../../lib/Button/Button";
 import { ChangeEvent, useCallback, useState } from "react";
 import axios from "axios";
+
 import { useMutation, useQuery, useQueryClient } from "react-query";
+
 
 interface IProps {}
 
@@ -12,6 +14,7 @@ const ManegeDeliveryTip = ({}: IProps): JSX.Element => {
   const changetip = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     settip(Number(e.target.value));
   }, []);
+
 
   const queryClient = useQueryClient();
 
@@ -28,6 +31,7 @@ const ManegeDeliveryTip = ({}: IProps): JSX.Element => {
       queryClient.invalidateQueries({ queryKey: "deliverycost" });
     },
   });
+
 
   const deliverycost = useQuery({
     queryKey: "deliverycost",
@@ -53,11 +57,13 @@ const ManegeDeliveryTip = ({}: IProps): JSX.Element => {
               onInput={changetip}
             ></input>
           </div>
+
           <div
             onClick={() => {
               mutate();
             }}
           >
+
             <SmallButton btn={btn} />
           </div>
         </div>
