@@ -78,6 +78,8 @@ const ManegeReport = ({}: IProps): JSX.Element => {
       return reportlist;
     },
   });
+  const Data: IData | undefined = queryClient.getQueryData("reportlist");
+  console.log(Data);
 
   // const data: IReport[] = [
   //   { id: 1, content: "광고징", username: "신고함", productid: 3 },

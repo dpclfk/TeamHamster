@@ -9,6 +9,10 @@ import axios from "axios";
 import { IReportUser } from "../../Component/List/ManegeList/User/ReportUser/UserItem";
 import { IBenUser } from "../../Component/List/ManegeList/User/Ben/BenItem";
 import { ChangeEvent, useCallback, useState } from "react";
+interface Block {
+  id: number;
+  nick: string;
+}
 
 interface IData {
   userlist: [
