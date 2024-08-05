@@ -1,19 +1,16 @@
 import { box, center } from "../../lib/styles";
-import ButtonComp, { SmallButton } from "../../Component/Button/Button";
+import ButtonComp from "../../Component/Button/Button";
 import { Button } from "../../lib/Button/Button";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { Debounce } from "../../CostomHook/Debounce";
 import AuthorityComp from "../../Component/List/ManegeList/authoritylist/authority";
 import { IUser } from "../../Component/List/ManegeList/authoritylist/authorityitem";
-import { Navigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../Context/Modal/Modal";
 
-interface IProps {}
-
-const Authority = ({}: IProps): JSX.Element => {
+const Authority = (): JSX.Element => {
   const modalvalue = useSetRecoilState(Modalcontent);
   const onoffModal = useSetRecoilState(Modalstate);
   const btn = new Button("확인", "bg-orange-500");
@@ -25,7 +22,6 @@ const Authority = ({}: IProps): JSX.Element => {
   }, []);
 
   const text = Debounce(user, 1000);
-  const queryClient = useQueryClient();
 
   const userlist = useMutation({
     mutationKey: ["authorityuser"],
@@ -55,7 +51,7 @@ const Authority = ({}: IProps): JSX.Element => {
         { withCredentials: true }
       );
     },
-    onSuccess(data) {
+    onSuccess() {
       modalvalue("authority");
     },
   });
@@ -90,8 +86,8 @@ const Authority = ({}: IProps): JSX.Element => {
         <div className="p-20 flex text-[2rem] font-bold gap-10 items-center ">
           <div>
             유저
-            <span className="px-2 text-orange-500">{userData?.nick}</span>의
-            권한을 변경하시겠습니까?
+            <span className="px-2 text-orange-500">{userData?.nick}</span>의 권한을
+            변경하시겠습니까?
           </div>
           <div
             onClick={() => {

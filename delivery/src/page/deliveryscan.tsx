@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import ButtonComp, { LargeButton } from "../Component/Button/Button";
+import ButtonComp from "../Component/Button/Button";
 import { Button } from "../lib/Button/Button";
-import { center, mobilebox } from "../lib/styles";
+import { mobilebox } from "../lib/styles";
 
 import Scan from "../Component/Scan/Scan";
 import { ChangeEvent, useState } from "react";
@@ -40,9 +40,7 @@ const DeliveryScan = (): JSX.Element => {
 
   const btn = new Button("확인", "bg-blue-200");
   return (
-    <div
-      className={`${mobilebox} flex flex-col items-center h-[41rem] overflow-auto`}
-    >
+    <div className={`${mobilebox} flex flex-col items-center h-[41rem] overflow-auto`}>
       <div className="py-3 text-[1.2rem] font-bold">배송완료 스캔</div>
       <div className={`my-5 `}>
         <Scan />
@@ -59,8 +57,7 @@ const DeliveryScan = (): JSX.Element => {
       </div>
 
       <div className="m-5 text-[1.3rem] font-bold">
-        <span className="text-orange-400">{pickitem}</span>상품배송을 완료
-        하시겠습니까?
+        <span className="text-orange-400">{pickitem}</span>상품배송을 완료 하시겠습니까?
       </div>
       <div className={`m-[3rem] `}>
         <Link to={"/"}>

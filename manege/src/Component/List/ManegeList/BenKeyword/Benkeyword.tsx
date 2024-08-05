@@ -1,4 +1,3 @@
-import { IData } from "../../../../page/manege/benkeyword";
 import Item, { IKeyword } from "./BenKeywordItem";
 
 interface IProps {
@@ -17,9 +16,7 @@ const BenKeyWord = ({ data }: IProps): JSX.Element => {
       </div>
       <div>
         {data &&
-          data.map((item: IKeyword, idx: number) => (
-            <Item key={idx} idx={idx + 1} item={item} />
-          ))}
+          data.map((item: IKeyword, idx: number) => <Item key={idx} idx={idx + 1} item={item} />)}
       </div>
     </div>
   );

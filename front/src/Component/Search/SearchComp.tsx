@@ -9,14 +9,12 @@ import { IChild } from "../Category/categoryItem";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { key } from "../../Context/Modal";
 
-interface IProps {}
-
 export interface ICategory {
   id: number;
   name: string;
   Children: IChild[];
 }
-const SearchComp = ({}: IProps): JSX.Element => {
+const SearchComp = (): JSX.Element => {
   const [content, setContent] = useState<string>("");
   const [catedata, setCateData] = useState<ICategory>();
   const saveContent = useCallback((e: ChangeEvent<HTMLInputElement>) => {

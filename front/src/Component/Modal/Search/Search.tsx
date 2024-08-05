@@ -6,9 +6,7 @@ import { useSetRecoilState } from "recoil";
 import { Modal } from "../../../Context/Modal";
 import { useBreakPoint } from "../../../CustomHook/BreakPoint";
 
-interface IProps {}
-
-const Search = ({}: IProps): JSX.Element => {
+const Search = (): JSX.Element => {
   const { isdesktop } = useBreakPoint();
   const [cookies, setCookie, removeCookie] = useCookies(["search"]);
   const [content, setContent] = useState<string>("");

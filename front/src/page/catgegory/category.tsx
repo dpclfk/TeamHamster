@@ -11,9 +11,8 @@ import { box, mobilebox } from "../../lib/styles";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoryobserver } from "../../Context/Modal";
-interface IProps {}
 
-const Category = ({}: IProps): JSX.Element => {
+const Category = (): JSX.Element => {
   const { isdesktop, ismobile } = useBreakPoint();
   const obServerOn = useRecoilValue(categoryobserver);
   const setObserverOn = useSetRecoilState(categoryobserver);

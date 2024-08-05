@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
-interface IProps {}
-
-const NotLogin = ({}: IProps): JSX.Element => {
+const NotLogin = (): JSX.Element => {
   return (
     <div className="flex me-1 gap-1 ">
       {/* <div>

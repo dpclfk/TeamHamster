@@ -10,9 +10,7 @@ import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../../Context/SystemModal/Modal";
 import { useNavigate } from "react-router-dom";
 
-interface IProps {}
-
-const FindPW = ({}: IProps): JSX.Element => {
+const FindPW = (): JSX.Element => {
   const setsystemonoff = useSetRecoilState(Modalstate);
   const setModalcontent = useSetRecoilState(Modalcontent);
   const { ismobile, isdesktop } = useBreakPoint();

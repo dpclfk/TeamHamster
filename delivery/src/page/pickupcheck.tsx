@@ -4,27 +4,27 @@ import { Button } from "../lib/Button/Button";
 import { mobilebox } from "../lib/styles";
 
 import { List } from "../Component/List/List";
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { PickCheck } from "../Component/List/item/Item";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../Context/Modal/Modal";
 
-interface IData {
-  product: [
-    {
-      id: number;
-      itemState: string;
-      SellAddress: {
-        detailAddress: string;
-        Address: {
-          address: string;
-        };
-      };
-    }
-  ];
-}
+// interface IData {
+//   product: [
+//     {
+//       id: number;
+//       itemState: string;
+//       SellAddress: {
+//         detailAddress: string;
+//         Address: {
+//           address: string;
+//         };
+//       };
+//     }
+//   ];
+// }
 interface IProduct {
   id: number;
   itemState: string;
@@ -51,11 +51,11 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
   };
   const [isMounted, SetIsMounted] = useState(false);
   const [pickitems, SetPickItems] = useState<string[]>([]);
-  const test1: PickCheck[] = [
-    { id: 1, pickadress: "어디지", campadress: "배송중" },
-    { id: 2, pickadress: "어디지", campadress: "배송중" },
-  ];
-  const queryClient = useQueryClient();
+  // const test1: PickCheck[] = [
+  //   { id: 1, pickadress: "어디지", campadress: "배송중" },
+  //   { id: 2, pickadress: "어디지", campadress: "배송중" },
+  // ];
+  useQueryClient();
 
   const { data } = useQuery({
     queryKey: "pickup",
@@ -70,8 +70,7 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
       const productlist = product.map((data: IProduct) => {
         const outData = {
           id: data.id,
-          pickadress:
-            data.SellAddress.Address.address + data.SellAddress.detailAddress,
+          pickadress: data.SellAddress.Address.address + data.SellAddress.detailAddress,
           campadress: data.itemState,
         };
         return outData;
@@ -134,16 +133,11 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
       </div>
       <div className={`my-5 flex`}>
         <div className="flex items-center">
-          <div className="pe-2 text-[1.2rem] font-bold">
-            배송번호:{cookiedata()}
-          </div>
-          번
+          <div className="pe-2 text-[1.2rem] font-bold">배송번호:{cookiedata()}</div>번
         </div>
       </div>
 
-      <div className="m-10 text-[1.3rem] font-bold">
-        픽업건을 선택 하시겠습니까?
-      </div>
+      <div className="m-10 text-[1.3rem] font-bold">픽업건을 선택 하시겠습니까?</div>
       <div className={`m-[3rem] `}>
         <Link to={"/"}>
           <div

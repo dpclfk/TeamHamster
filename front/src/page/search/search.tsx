@@ -10,9 +10,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Searchobserver } from "../../Context/Modal";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-interface IProps {}
-
-const Search = ({}: IProps): JSX.Element => {
+const Search = (): JSX.Element => {
   const { isdesktop, ismobile } = useBreakPoint();
 
   const observerOn = useRecoilValue(Searchobserver);

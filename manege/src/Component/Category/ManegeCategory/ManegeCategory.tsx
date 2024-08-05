@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import CateItem, { ICate } from "./CateItem";
-import {
-  QueryClient,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios, { AxiosResponse } from "axios";
 
 interface IData {
@@ -22,11 +17,8 @@ export interface ICLick {
   name: string;
 }
 
-const ManegeCategoryList = ({
-  settopcate,
-  settopname,
-}: IProps): JSX.Element => {
-  const queryClient = useQueryClient();
+const ManegeCategoryList = ({ settopcate, settopname }: IProps): JSX.Element => {
+  useQueryClient();
 
   const [cate, setcate] = useState<ICLick>();
   const [selectcate1, setselectcate1] = useState<number>(0);
@@ -37,12 +29,9 @@ const ManegeCategoryList = ({
   const firstcate = useQuery<IData>({
     queryKey: "firstcate",
     queryFn: async () => {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/catefirst`,
-        {
-          withCredentials: true,
-        }
-      );
+      const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/catefirst`, {
+        withCredentials: true,
+      });
       return data;
     },
   });

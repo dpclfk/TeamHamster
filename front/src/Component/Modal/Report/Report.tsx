@@ -7,9 +7,7 @@ import { useBreakPoint } from "../../../CustomHook/BreakPoint";
 import { ChangeEvent, useCallback, useState } from "react";
 import axios from "axios";
 
-interface IProps {}
-
-const Report = ({}: IProps): JSX.Element => {
+const Report = (): JSX.Element => {
   const [select, setselect] = useState<string>();
   const [check, setCheck] = useState<boolean>(false);
 
