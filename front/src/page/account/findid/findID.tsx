@@ -9,9 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../../Context/SystemModal/Modal";
 
-interface IProps {}
-
-const FindID = ({}: IProps): JSX.Element => {
+const FindID = (): JSX.Element => {
   const setsystemonoff = useSetRecoilState(Modalstate);
   const setModalcontent = useSetRecoilState(Modalcontent);
   const navigate = useNavigate();

@@ -6,9 +6,7 @@ import LargeButton from "../../../Component/Button/Button";
 import { Button } from "../../../lib/Button/Button";
 import { useBreakPoint } from "../../../CustomHook/BreakPoint";
 
-interface IProps {}
-
-const Regist = ({}: IProps): JSX.Element => {
+const Regist = (): JSX.Element => {
   const { ismobile } = useBreakPoint();
   const [email, setEmail] = useState("");
   const serverUrl = process.env.REACT_APP_SERVER_URL;

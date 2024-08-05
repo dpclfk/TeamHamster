@@ -1,9 +1,7 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../../Context/SystemModal/Modal";
 
-interface IProps {}
-
-const ModalBox = ({}: IProps): JSX.Element => {
+const ModalBox = (): JSX.Element => {
   const modalvalue = useRecoilValue(Modalcontent);
   const onoffModal = useSetRecoilState(Modalstate);
 

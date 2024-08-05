@@ -5,9 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { errCateFirstData } from "../../../lib/errors";
 
-interface IProps {}
-
-const MenuCategory = ({}: IProps): JSX.Element => {
+const MenuCategory = (): JSX.Element => {
   const [cateCount, setCateCount] = useState(0);
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 

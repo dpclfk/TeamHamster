@@ -10,7 +10,7 @@ import { Debounce } from "../Costomhook/Debounce";
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../Context/Modal/Modal";
 
-const PickupScan = ({}): JSX.Element => {
+const PickupScan = (): JSX.Element => {
   const setsystemonoff = useSetRecoilState(Modalstate);
   const setModalcontent = useSetRecoilState(Modalcontent);
   const [pickitem, SetPickItem] = useState<string>("");
@@ -61,8 +61,7 @@ const PickupScan = ({}): JSX.Element => {
       </div>
 
       <div className="m-4 text-[1.3rem] font-bold">
-        <span className="text-orange-400">{pickitem}</span>상품을 픽업
-        하시겠습니까?
+        <span className="text-orange-400">{pickitem}</span>상품을 픽업 하시겠습니까?
       </div>
       <div className={`m-[3rem] `}>
         <Link to={"/"}>

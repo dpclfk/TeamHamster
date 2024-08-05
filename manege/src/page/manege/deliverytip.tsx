@@ -4,12 +4,10 @@ import { Button } from "../../lib/Button/Button";
 import { ChangeEvent, useCallback, useState } from "react";
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../Context/Modal/Modal";
 
-interface IProps {}
-
-const ManegeDeliveryTip = ({}: IProps): JSX.Element => {
+const ManegeDeliveryTip = (): JSX.Element => {
   const modalvalue = useSetRecoilState(Modalcontent);
   const onoffModal = useSetRecoilState(Modalstate);
   const [tip, settip] = useState<number>();
@@ -72,10 +70,7 @@ const ManegeDeliveryTip = ({}: IProps): JSX.Element => {
         <div className="pb-20 flex w-[45rem] text-[2rem] font-bold gap-10">
           <div>현재 배송비: </div>
           <div>
-            <span className="text-orange-500">
-              {deliverycost.data?.cost.cost}
-            </span>
-            원
+            <span className="text-orange-500">{deliverycost.data?.cost.cost}</span>원
           </div>
         </div>
       </div>

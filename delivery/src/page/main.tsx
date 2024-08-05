@@ -1,7 +1,6 @@
-import { center, mobilebox } from "../lib/styles";
+import { mobilebox } from "../lib/styles";
 import { IoRocketSharp } from "react-icons/io5";
 import { GiFinishLine } from "react-icons/gi";
-import { LuScanLine } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { MdAddShoppingCart } from "react-icons/md";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -53,9 +52,7 @@ const Main = ({ start, end, workstate }: IProps): JSX.Element => {
         </div>
         <div className="flex flex-col items-center">
           <Link to={"/pickuplist"}>
-            <div
-              className={`h-[10rem] w-[10rem] border flex item-center justify-center`}
-            >
+            <div className={`h-[10rem] w-[10rem] border flex item-center justify-center`}>
               <FaTag className="py-3 h-[80%] w-[80%]" color="gray" />
             </div>
           </Link>
