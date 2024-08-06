@@ -223,6 +223,7 @@ jobs:
 
             nvm use --lts
             cd /var/www/backend
+            ${{ secrets.SERVER_ENV }}
             npm i --production'
 
       - name: Start Server
