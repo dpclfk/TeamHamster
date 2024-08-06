@@ -12,6 +12,7 @@ import { point } from "./models/mongoDB";
 import basicCate from "./services/common/basicCate";
 
 dotenv.config();
+console.log("test1");
 
 const app: Express = express();
 app.use(cookieParser(process.env.COOKIE || "test"));
@@ -29,6 +30,7 @@ app.use(
     credentials: true,
   })
 );
+console.log("test2");
 
 app.use("/api/imgs", express.static("uploads"));
 
@@ -40,6 +42,12 @@ mongoose.connect(app.get("url"), {
 mongoose.connection.on("connected", () => {
   console.log("mongoose connection");
 });
+
+console.log("test3");
+
+console.log(process.env.KEY);
+
+console.log(process.env.IV);
 
 const basicvalue = async () => {
   try {
