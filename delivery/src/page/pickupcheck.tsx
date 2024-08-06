@@ -11,20 +11,6 @@ import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../Context/Modal/Modal";
 
-// interface IData {
-//   product: [
-//     {
-//       id: number;
-//       itemState: string;
-//       SellAddress: {
-//         detailAddress: string;
-//         Address: {
-//           address: string;
-//         };
-//       };
-//     }
-//   ];
-// }
 interface IProduct {
   id: number;
   itemState: string;
@@ -51,13 +37,10 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
   };
   const [isMounted, SetIsMounted] = useState(false);
   const [pickitems, SetPickItems] = useState<string[]>([]);
-  // const test1: PickCheck[] = [
-  //   { id: 1, pickadress: "어디지", campadress: "배송중" },
-  //   { id: 2, pickadress: "어디지", campadress: "배송중" },
-  // ];
+
   useQueryClient();
 
-  const { data } = useQuery({
+  useQuery({
     queryKey: "pickup",
     queryFn: async () => {
       const { data } = await axios.post(
@@ -70,7 +53,8 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
       const productlist = product.map((data: IProduct) => {
         const outData = {
           id: data.id,
-          pickadress: data.SellAddress.Address.address + data.SellAddress.detailAddress,
+          pickadress:
+            data.SellAddress.Address.address + data.SellAddress.detailAddress,
           campadress: data.itemState,
         };
         return outData;
@@ -78,8 +62,6 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
       setlastdata(productlist);
     },
   });
-
-  console.log(data);
 
   const selectpick = useMutation({
     mutationKey: ["selectpick"],
@@ -90,7 +72,7 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
         { withCredentials: true }
       );
     },
-    onSuccess(data) {
+    onSuccess() {
       setModalcontent("sucesspick");
       setsystemonoff(true);
     },
@@ -101,9 +83,10 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
   });
 
   const cookiedata = () => {
+    console.log(pickitems);
     let str = pickitems[0];
     for (let i = 0; i < pickitems.length - 1; i++) {
-      str += "," + pickitems[i + 1];
+      str += " " + pickitems[i + 1];
     }
 
     return str;
@@ -111,18 +94,17 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
 
   useEffect(() => {
     checklist(1);
-  }, []);
+  }, [checklist]);
+
   useEffect(() => {
     if (isMounted) {
-      SetPickItems(
-        [...pickitems, checkbox].filter(
-          (item, idx) => [...pickitems, checkbox].indexOf(item) === idx
-        )
-      );
+      SetPickItems((items) => {
+        return [...items, checkbox];
+      });
     } else {
       SetIsMounted(true);
     }
-  }, [checkbox]);
+  }, [checkbox, isMounted]);
 
   const btn = new Button("확인", "bg-blue-200");
   return (
@@ -133,11 +115,16 @@ const PickupCheck = ({ liststate, checklist }: IProps): JSX.Element => {
       </div>
       <div className={`my-5 flex`}>
         <div className="flex items-center">
-          <div className="pe-2 text-[1.2rem] font-bold">배송번호:{cookiedata()}</div>번
+          <div className="pe-2 text-[1.2rem] font-bold">
+            배송번호:{cookiedata()}
+          </div>
+          번
         </div>
       </div>
 
-      <div className="m-10 text-[1.3rem] font-bold">픽업건을 선택 하시겠습니까?</div>
+      <div className="m-10 text-[1.3rem] font-bold">
+        픽업건을 선택 하시겠습니까?
+      </div>
       <div className={`m-[3rem] `}>
         <Link to={"/"}>
           <div

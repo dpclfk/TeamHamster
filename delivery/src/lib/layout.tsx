@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { Link, Route, Routes } from "react-router-dom";
 import { mobilebox } from "./styles";
@@ -11,7 +11,7 @@ import PickupScan from "../page/pickupscan";
 import DeliveryScan from "../page/deliveryscan";
 import PickupCheck from "../page/pickupcheck";
 import PickUpList from "../page/pickuplist";
-import DeliveryList from "../page/deliverylist";
+
 import SelectCamp from "../page/selectcamp";
 import MyPage from "../page/mypage";
 import DeliveryLoginPage from "../page/deliverylogin";
@@ -21,6 +21,7 @@ import ModalBox from "../Component/Modal/ModalBox";
 import { useBreakPoint } from "../Costomhook/BreakPoint";
 import { Modalcontent, Modalstate } from "../Context/Modal/Modal";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+
 export interface IUser {
   id: number;
   nick: string;
@@ -28,20 +29,25 @@ export interface IUser {
   admin: boolean;
   delivery: boolean;
 }
+
+interface IDatas {
+  login: IUser;
+}
+
 const LayOut = (): JSX.Element => {
   const setsystemonoff = useSetRecoilState(Modalstate);
   const setModalcontent = useSetRecoilState(Modalcontent);
   const systemModal = useRecoilValue(Modalstate);
   const { isdesktop, ismobile } = useBreakPoint();
-  const [, setUserLogin] = useState<boolean>(false);
+  const setUserLogin = useState<boolean>(false)[1];
   const [camp, setcamp] = useState<string>("");
   const [workstate, SetWorkState] = useState<boolean>(false);
   const [liststate, SetListState] = useState(0);
-  // let intervalGpsGet: any;
+
   const [intervalGpsGet, setIntervalGpsGet] = useState<any>();
 
   //env
-  const serverUrl = process.env.REACT_APP_SERVER_URL;
+  const serverUrl = useMemo(() => process.env.REACT_APP_SERVER_URL, []);
 
   const start = useCallback(() => {
     SetWorkState(true);
@@ -52,24 +58,27 @@ const LayOut = (): JSX.Element => {
   const saveList = useCallback((item: number) => {
     SetListState(item);
   }, []);
-  const gpsToServer = async (x: number, y: number) => {
-    await axios
-      .post(
-        `${serverUrl}/delivery/nowspot`,
-        {
-          spotX: x,
-          spotY: y,
-        },
-        { withCredentials: true }
-      )
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log();
-      });
-  };
+  const gpsToServer = useCallback(
+    async (x: number, y: number) => {
+      await axios
+        .post(
+          `${serverUrl}/delivery/nowspot`,
+          {
+            spotX: x,
+            spotY: y,
+          },
+          { withCredentials: true }
+        )
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log();
+        });
+    },
+    [serverUrl]
+  );
 
   //func
 
@@ -77,7 +86,7 @@ const LayOut = (): JSX.Element => {
   const [y, setY] = useState<number>();
   const [gpsDidRes, setGpsDidRes] = useState<boolean>(true);
 
-  const getGps = async () => {
+  const getGps = useCallback(async () => {
     if (gpsDidRes) {
       setGpsDidRes(false);
       navigator.geolocation.getCurrentPosition(
@@ -103,17 +112,23 @@ const LayOut = (): JSX.Element => {
     } else {
       console.log("아직 응답 안함");
     }
-  };
+  }, [gpsDidRes]);
 
-  const logcheck = useMutation({
+  const { data, isError, mutate } = useMutation({
     mutationKey: "userlogin",
     mutationFn: async () => {
-      const { data } = await axios.post(`${serverUrl}/layout`, {}, { withCredentials: true });
-      return data;
+      const { data }: { data: IDatas } = await axios.post(
+        `${serverUrl}/layout`,
+        {},
+        { withCredentials: true }
+      );
+      return data as IDatas;
     },
   });
 
-  console.log(logcheck);
+  const logcheck = useMemo(() => {
+    return { data: data, isError: isError, mutate: mutate };
+  }, [data, isError, mutate]);
 
   const logOut = async () => {
     await axios
@@ -131,38 +146,45 @@ const LayOut = (): JSX.Element => {
       });
   };
 
-  const log: IUser = logcheck.data?.login;
-  console.log(log);
+  const log: IUser | undefined = useMemo(() => {
+    if (logcheck.data?.login !== data) {
+      return logcheck.data?.login;
+    }
+  }, [logcheck.data?.login, data]);
+
   //mount
 
   useEffect(() => {
-    console.log(workstate);
+    console.log("인터벌 이펙트");
     if (workstate) {
       console.log("gps 인터벌 시작");
-      setIntervalGpsGet(setInterval(getGps, 3000));
+      if (intervalGpsGet === undefined) {
+        setIntervalGpsGet(setInterval(getGps, 3000));
+      }
     } else {
       console.log("gps 인터벌 종료");
       setIntervalGpsGet(clearInterval(intervalGpsGet));
     }
-  }, [workstate]);
+  }, [workstate, intervalGpsGet, setIntervalGpsGet, getGps]);
 
   //
-
   useEffect(() => {
     if (x && y) gpsToServer(x, y);
-  }, [x, y]);
+  }, [x, y, gpsToServer]);
 
   useEffect(() => {
-    logcheck.mutate();
-  }, []);
+    mutate();
+  }, [mutate]);
 
   return (
     <div className="h-[50rem] ">
       <div className="m-auto max-w-[35rem] h-[6rem] bg-blue-300">
-        <div className={` ${mobilebox} h-[100%] flex items-center justify-between`}>
+        <div
+          className={` ${mobilebox} h-[100%] flex items-center justify-between`}
+        >
           <div className="flex">
             <div className="h-[3rem] w-[3rem] ">
-              <img src="/imgs/hamster.png" alt="hamster"></img>
+              <img src="/imgs/hamster.png" alt="imgNotFoundOnReact"></img>
             </div>
             <div className="text-center text-[0.8rem] text-white font-bold">
               <div>햄스터마켓</div>
@@ -174,7 +196,9 @@ const LayOut = (): JSX.Element => {
               <div className="text-center text-white">
                 <div>배송파트너</div>
                 <div>{log?.nick} 님</div>
-                {workstate && <div className="border rounded bg-yellow-400">업무중</div>}
+                {workstate && (
+                  <div className="border rounded bg-yellow-400">업무중</div>
+                )}
               </div>
               <div
                 onClick={() => {
@@ -199,26 +223,33 @@ const LayOut = (): JSX.Element => {
               <Routes>
                 <Route
                   path="/"
-                  element={<Main start={start} end={end} workstate={workstate} />}
+                  element={
+                    <Main start={start} end={end} workstate={workstate} />
+                  }
                 ></Route>
                 <Route path="/pickupscan" element={<PickupScan />}></Route>
                 <Route
                   path="/pickupcheck"
-                  element={<PickupCheck liststate={liststate} checklist={saveList} />}
+                  element={
+                    <PickupCheck liststate={liststate} checklist={saveList} />
+                  }
                 ></Route>
-                <Route path="/selectcamp" element={<SelectCamp setcamp={setcamp} />}></Route>
+                <Route
+                  path="/selectcamp"
+                  element={<SelectCamp setcamp={setcamp} />}
+                ></Route>
                 <Route
                   path="/pickuplist"
-                  element={<PickUpList liststate={liststate} checklist={saveList} />}
-                ></Route>
-                <Route
-                  path="/deliverylist"
-                  element={<DeliveryList liststate={liststate} checklist={saveList} />}
+                  element={
+                    <PickUpList liststate={liststate} checklist={saveList} />
+                  }
                 ></Route>
                 <Route path="/deliveryscan" element={<DeliveryScan />}></Route>
                 <Route
                   path="/mypage"
-                  element={<MyPage workstate={workstate} camp={camp} user={log} />}
+                  element={
+                    <MyPage workstate={workstate} camp={camp} user={log} />
+                  }
                 ></Route>
               </Routes>
             </div>

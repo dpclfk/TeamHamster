@@ -12,7 +12,9 @@ const NotLogin = (): JSX.Element => {
         </div>
       </div> */}
       <Link to={"/login"}>
-        <div className="px-4 py-2 border bg-blue-100 rounded text-[1.2rem]">로그인</div>
+        <div className="px-4 py-2 border bg-blue-100 rounded text-[1.2rem]">
+          로그인
+        </div>
       </Link>
     </div>
   );

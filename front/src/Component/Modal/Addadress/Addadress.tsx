@@ -91,7 +91,10 @@ const Addaddress = (): JSX.Element => {
                 type="text"
                 value={address.code}
               ></input>
-              <div onClick={openApi} className="p-2 border rounded bg-orange-200">
+              <div
+                onClick={openApi}
+                className="p-2 border rounded bg-orange-200"
+              >
                 주소검색
               </div>
             </div>
@@ -121,7 +124,9 @@ const Addaddress = (): JSX.Element => {
               ></input>
             </div>
             {!nameReg.test(name) && (
-              <div className="text-red-400">이름은 2~4글자 사이로 입력하세요</div>
+              <div className="text-red-400">
+                이름은 2~4글자 사이로 입력하세요
+              </div>
             )}
 
             <div className="flex items-center">
@@ -133,7 +138,9 @@ const Addaddress = (): JSX.Element => {
               ></input>
             </div>
             {!phoneReg.test(phoneNum) && (
-              <div className="text-red-400">입력가능한 번호의 예 : 010-1234-5678</div>
+              <div className="text-red-400">
+                입력가능한 번호의 예 : 010-1234-5678
+              </div>
             )}
 
             <div className="my-5 flex items-center">
@@ -142,7 +149,9 @@ const Addaddress = (): JSX.Element => {
                 {address.full + " " + etcaddress}
               </div>
             </div>
-            <div className="py-[1rem] text-[1.3rem]">이 주소를 추가하시겠습니까?</div>
+            <div className="py-[1rem] text-[1.3rem]">
+              이 주소를 추가하시겠습니까?
+            </div>
           </div>
           <div
             onClick={() => {

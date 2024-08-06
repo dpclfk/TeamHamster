@@ -3,10 +3,11 @@ import ButtonComp from "../../Component/Button/Button";
 import { Button } from "../../lib/Button/Button";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { Debounce } from "../../CostomHook/Debounce";
 import AuthorityComp from "../../Component/List/ManegeList/authoritylist/authority";
 import { IUser } from "../../Component/List/ManegeList/authoritylist/authorityitem";
+
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../Context/Modal/Modal";
 
@@ -22,8 +23,9 @@ const Authority = (): JSX.Element => {
   }, []);
 
   const text = Debounce(user, 1000);
+  useQueryClient();
 
-  const userlist = useMutation({
+  const { mutate } = useMutation({
     mutationKey: ["authorityuser"],
     mutationFn: async () => {
       const { data } = await axios.post(
@@ -51,7 +53,7 @@ const Authority = (): JSX.Element => {
         { withCredentials: true }
       );
     },
-    onSuccess() {
+    onSuccess(data) {
       modalvalue("authority");
     },
   });
@@ -63,9 +65,9 @@ const Authority = (): JSX.Element => {
   };
   useEffect(() => {
     if (text) {
-      userlist.mutate();
+      mutate();
     }
-  }, [text]);
+  }, [text, mutate]);
 
   return (
     <div className={`${box}`}>
@@ -86,8 +88,8 @@ const Authority = (): JSX.Element => {
         <div className="p-20 flex text-[2rem] font-bold gap-10 items-center ">
           <div>
             유저
-            <span className="px-2 text-orange-500">{userData?.nick}</span>의 권한을
-            변경하시겠습니까?
+            <span className="px-2 text-orange-500">{userData?.nick}</span>의
+            권한을 변경하시겠습니까?
           </div>
           <div
             onClick={() => {

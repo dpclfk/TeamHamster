@@ -26,7 +26,7 @@ const SearchComp = (): JSX.Element => {
   const search = Debounce(content, 800);
   const imgbase = process.env.REACT_APP_IMG_BASE;
 
-  const getcategory = async () => {
+  const getcategory = useCallback(async () => {
     if (search !== "") {
       await axios
         .post(
@@ -47,13 +47,15 @@ const SearchComp = (): JSX.Element => {
           });
         });
     }
-  };
+  }, [search]);
 
   useEffect(() => {
     if (search !== undefined) {
       getcategory();
     }
-  }, [search]);
+  }, [search, getcategory]);
+
+  console.log("써치컴프 무한 돌기 체크");
 
   return (
     <div className="h-[15rem] flex justify-center">
@@ -64,9 +66,14 @@ const SearchComp = (): JSX.Element => {
           alt="banner"
         ></img>
         <div className="flex min-w-[60rem] gap-[4rem]">
-          <img className="relative" src={`${imgbase}good.png`} alt="mainimage"></img>
+          <img
+            className="relative"
+            src={`${imgbase}good.png`}
+            alt="mainimage"
+          ></img>
           <div className="py-4 relative text-[1.4rem] text-white font-bold text-center">
-            믿을수 있는 중고거래 <br></br>따봉 햄스터가 여러분의 안전한 거래를 응원합니다!
+            믿을수 있는 중고거래 <br></br>따봉 햄스터가 여러분의 안전한 거래를
+            응원합니다!
           </div>
         </div>
       </div>
@@ -99,7 +106,9 @@ const SearchComp = (): JSX.Element => {
             </div>
           </Link>
         ) : (
-          <div className={`${center} px-2 h-[3rem] border rounded-e bg-blue-100 text-gray-500`}>
+          <div
+            className={`${center} px-2 h-[3rem] border rounded-e bg-blue-100 text-gray-500`}
+          >
             검색
           </div>
         )}

@@ -7,7 +7,7 @@ import { errCateFirstData } from "../../../lib/errors";
 
 const MenuCategory = (): JSX.Element => {
   const [cateCount, setCateCount] = useState(0);
-  const serverUrl = process.env.REACT_APP_SERVER_URL;
+  const serverUrl = useMemo(() => process.env.REACT_APP_SERVER_URL, []);
 
   const setCatePage = useCallback((num: number) => {
     setCateCount(num);
@@ -15,7 +15,7 @@ const MenuCategory = (): JSX.Element => {
 
   const [cateData, setData] = useState<ICates<ICate>>({ category: [] });
 
-  const cateGet = async () => {
+  const cateGet = useCallback(async () => {
     await axios
       .post(`${serverUrl}/catefirst`, {}, { withCredentials: true })
       .then((data: AxiosResponse<ICates<ICate>>) => {
@@ -26,7 +26,7 @@ const MenuCategory = (): JSX.Element => {
         console.log("cateGet err", err);
         setData(errCateFirstData);
       });
-  };
+  }, [serverUrl]);
 
   const btns = useMemo(() => {
     const temp = [];
@@ -36,7 +36,7 @@ const MenuCategory = (): JSX.Element => {
 
   useEffect(() => {
     cateGet();
-  }, []);
+  }, [cateGet]);
 
   return (
     <div>
@@ -45,7 +45,9 @@ const MenuCategory = (): JSX.Element => {
           {cateData &&
             cateData.category
               .slice(cateCount * 9, (cateCount + 1) * 9)
-              .map((item: ICate, idx: number) => <CategoryItem key={idx} item={item} />)}
+              .map((item: ICate, idx: number) => (
+                <CategoryItem key={idx} item={item} />
+              ))}
         </div>
       </div>
       <div className={`${center}`}>
@@ -54,7 +56,9 @@ const MenuCategory = (): JSX.Element => {
             <div
               key={idx}
               className={`h-4 ${
-                idx === cateCount ? "w-7 rounded bg-orange-600" : "w-4 rounded bg-orange-400"
+                idx === cateCount
+                  ? "w-7 rounded bg-orange-600"
+                  : "w-4 rounded bg-orange-400"
               }`}
               onClick={() => {
                 setCatePage(idx);

@@ -64,7 +64,9 @@ const Regist = (): JSX.Element => {
     <div>
       <div className={`${ismobile && "p-4 "} ${box} ${center}`}>
         <div className="rounded-lg w-full m">
-          <h2 className="text-2xl font-bold text-center text-orange-500 mt-10">햄스터 마켓</h2>
+          <h2 className="text-2xl font-bold text-center text-orange-500 mt-10">
+            햄스터 마켓
+          </h2>
           <h2 className="text-2xl font-bold text-center mb-10 ">회원가입</h2>
           <form onSubmit={handleSignup}>
             <div className="mb-4">
@@ -100,7 +102,9 @@ const Regist = (): JSX.Element => {
                     "비밀번호는 8글자 이상, 30글자 이하로 작성하세요"
                   </div>
                 ) : (
-                  <div className="text-red-500">"비밀번호는 영어, 특수문자, 숫자를 포함하세요"</div>
+                  <div className="text-red-500">
+                    "비밀번호는 영어, 특수문자, 숫자를 포함하세요"
+                  </div>
                 ))}
             </div>
             <div className="mb-4">
@@ -113,7 +117,9 @@ const Regist = (): JSX.Element => {
                 placeholder="비밀번호 확인"
               />
               {checkPassword !== "" && password !== checkPassword && (
-                <div className="text-red-500">비밀번호가 일치하지 않습니다.</div>
+                <div className="text-red-500">
+                  비밀번호가 일치하지 않습니다.
+                </div>
               )}
             </div>
             <div className="mb-4">
@@ -136,7 +142,9 @@ const Regist = (): JSX.Element => {
                 placeholder="닉네임"
               />
               {nickname !== "" && nickReg.test(nickname) === false && (
-                <div className="text-red-500">특수문자 제외 알파벳과 한글로 작성하세요</div>
+                <div className="text-red-500">
+                  특수문자 제외 알파벳과 한글로 작성하세요
+                </div>
               )}
             </div>
             <div className="mb-20">
@@ -149,11 +157,15 @@ const Regist = (): JSX.Element => {
                 placeholder="휴대폰번호"
               />
               {phone !== "" && phoneReg.test(phone) === false && (
-                <div className="text-red-500">전화번호 형식에 맞추어 주세요</div>
+                <div className="text-red-500">
+                  전화번호 형식에 맞추어 주세요
+                </div>
               )}
             </div>
             <div onClick={handleSignup}>
-              <LargeButton btn={new Button("회원가입", "bg-amber-300 w-auto")}></LargeButton>
+              <LargeButton
+                btn={new Button("회원가입", "bg-amber-300 w-auto")}
+              ></LargeButton>
             </div>
 
             <p className="text-center mt-4">햄스터 마켓 계정이 있으신가요?</p>

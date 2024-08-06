@@ -70,7 +70,10 @@ const ManegeDeliveryTip = (): JSX.Element => {
         <div className="pb-20 flex w-[45rem] text-[2rem] font-bold gap-10">
           <div>현재 배송비: </div>
           <div>
-            <span className="text-orange-500">{deliverycost.data?.cost.cost}</span>원
+            <span className="text-orange-500">
+              {deliverycost.data?.cost.cost}
+            </span>
+            원
           </div>
         </div>
       </div>

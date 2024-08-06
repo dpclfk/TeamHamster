@@ -1,7 +1,12 @@
 import DaumPostcodeEmbed from "react-daum-postcode";
 
+interface IAddress {
+  code: string;
+  full: string;
+}
+
 interface IProps {
-  setaddress({}): void;
+  setaddress: ({ code, full }: IAddress) => void;
 }
 
 const DaumApi = ({ setaddress }: IProps): JSX.Element => {
@@ -18,13 +23,14 @@ const DaumApi = ({ setaddress }: IProps): JSX.Element => {
         extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        extraAddress += extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
 
     setaddress({
-      code: data.roadnameCode,
+      code: data.zonecode,
       full: fullAddress,
     });
   };
