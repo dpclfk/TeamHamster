@@ -51,18 +51,18 @@ const basicvalue = async () => {
       DeliveryCost.create({ cost: 3000 });
       point.create({ pointPercent: 1000 });
 
-      const key = crypto.scryptSync("hgaomasttmexrj", `${process.env.KEY || ""}`, 32);
-      const iv = process.env.IV || "";
-      const cipher = crypto.createCipheriv("aes-256-gcm", key, iv);
+      const key: Buffer = crypto.scryptSync("hgaomasttmexrj", `${process.env.KEY || ""}`, 32);
+      const iv: string = process.env.IV || "";
+      const cipher: crypto.CipherGCM = crypto.createCipheriv("aes-256-gcm", key, iv);
 
       const encryptionemail: string = cipher.update(`admin1@admin.com`, "utf-8", "hex");
 
-      const encryptionpw = crypto
+      const encryptionpw: string = crypto
         .createHash("sha512")
         .update(`admin11@${process.env.SALT}`)
         .digest("hex");
 
-      const store = await Store.create({
+      const store: Store = await Store.create({
         nick: "admin1",
         mobile: "",
         report_point: 10,
@@ -76,7 +76,7 @@ const basicvalue = async () => {
         where: { name: "관리자" },
       });
 
-      const regist = await User.create({
+      const regist: User = await User.create({
         email: encryptionemail,
         password: encryptionpw,
         superAdmin: true,
