@@ -196,6 +196,10 @@ jobs:
         working-directory: ./backend
         run: npm i
 
+      - name: server env
+        working-directory: ./backend
+        run: ${{ secrets.SERVER_ENV }}'
+
       - name: Build Back
         working-directory: ./backend
         run: npx tsc
@@ -220,7 +224,6 @@ jobs:
             nvm use --lts
             cd /var/www/backend
             npm i --production
-            ${{ secrets.SERVER_ENV }}'
 
       - name: Start Server
         run: |
