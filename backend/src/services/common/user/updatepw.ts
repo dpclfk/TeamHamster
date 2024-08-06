@@ -10,7 +10,7 @@ export default async (req: Request, res: Response) => {
     const reqbody = req.body;
     console.log(req.session.finduser);
 
-    const encryptionpw = crypto
+    const encryptionpw: string = crypto
       .createHash("sha512")
       .update(`${reqbody.pw + process.env.SALT}`)
       .digest("hex");

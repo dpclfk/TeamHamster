@@ -10,7 +10,7 @@ export default async (req: Request, res: Response) => {
     const reqbody = req.body;
 
     const key: Buffer = crypto.scryptSync("hgaomasttmexrj", `${process.env.KEY || ""}`, 32);
-    const iv: string = process.env.IV || "";
+    const iv: string = process.env.IV || "<Buffer fe db 11 e2 ed 50 16 b0 4f ee 0d 43 96 0b 1a 13>";
     const cipher: crypto.CipherGCM = crypto.createCipheriv("aes-256-gcm", key, iv);
 
     let encryptionemail = cipher.update(`${reqbody.email}`, "utf-8", "hex");
