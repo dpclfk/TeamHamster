@@ -35,7 +35,7 @@ app.use("/api/imgs", express.static("uploads"));
 app.use("/api", router);
 
 mongoose.connect(app.get("url"), {
-  dbName: "teamhamster",
+  dbName: "hamster",
 });
 mongoose.connection.on("connected", () => {
   console.log("mongoose connection");
