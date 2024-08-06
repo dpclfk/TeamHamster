@@ -13,7 +13,9 @@ const ReportUser = ({ data }: IProps): JSX.Element => {
         <span className="mx-3  py-2 w-[4rem] ">유저처분</span>
       </div>
       {data &&
-        data.map((item: IReportUser, idx: number) => <Item key={idx} idx={idx + 1} item={item} />)}
+        data.map((item: IReportUser, idx: number) => (
+          <Item key={idx} idx={idx + 1} item={item} />
+        ))}
     </div>
   );
 };

@@ -19,6 +19,7 @@ const ManegePoint = (): JSX.Element => {
   const modalvalue = useSetRecoilState(Modalcontent);
   const onoffModal = useSetRecoilState(Modalstate);
   const btn = new Button("확인", "bg-orange-500");
+
   const [point, setpoint] = useState<number>();
   const changepoint = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setpoint(Number(e.target.value));

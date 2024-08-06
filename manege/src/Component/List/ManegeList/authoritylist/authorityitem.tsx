@@ -18,6 +18,7 @@ const Item = ({ item, idx, setdata }: IProps): JSX.Element => {
   const [superstate, setsuper] = useState(item.superAdmin);
   const [adminstate, setadmin] = useState(item.admin);
   const [deliverystate, setdelivery] = useState(item.delivery);
+
   const superchange = () => {
     setsuper(!superstate);
   };
@@ -68,7 +69,10 @@ const Item = ({ item, idx, setdata }: IProps): JSX.Element => {
           ></input>
         }
       </div>
-      <div onClick={onclick} className="border px-3 rounded bg-orange-400 text-white">
+      <div
+        onClick={onclick}
+        className="border px-3 rounded bg-orange-400 text-white"
+      >
         선택
       </div>
     </div>

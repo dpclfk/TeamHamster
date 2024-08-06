@@ -14,10 +14,16 @@ const ModalBox = (): JSX.Element => {
         {modalvalue === "logout" && <div>로그아웃 완료. </div>}
         {modalvalue === "logoutfail" && <div>로그아웃 실패. </div>}
         {modalvalue === "sucesspick" && <div>상품픽업 목록 추가완료. </div>}
-        {modalvalue === "failpick" && <div>상품을 픽업목록에 추가하지 못했습니다.</div>}
+        {modalvalue === "failpick" && (
+          <div>상품을 픽업목록에 추가하지 못했습니다.</div>
+        )}
         {modalvalue === "completepick" && <div>상품픽업이 완료되었습니다.</div>}
-        {modalvalue === "failpickscan" && <div>상품을 픽업하지 못했습니다.</div>}
-        {modalvalue === "completedelivery" && <div>상품배송을 완료하엿습니다.</div>}
+        {modalvalue === "failpickscan" && (
+          <div>상품을 픽업하지 못했습니다.</div>
+        )}
+        {modalvalue === "completedelivery" && (
+          <div>상품배송을 완료하엿습니다.</div>
+        )}
         {modalvalue === "falideliveryscan" && <div>배송완료 스캔 실패.</div>}
 
         {modalvalue === "setcamp" && <div>캠프가 배정되었습니다.</div>}

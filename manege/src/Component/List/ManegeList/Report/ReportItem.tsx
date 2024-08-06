@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Button } from "../../../../lib/Button/Button";
 import { TinyButton } from "../../../Button/Button";
+
 import { useMutation, useQueryClient } from "react-query";
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../../../Context/Modal/Modal";
@@ -26,9 +27,12 @@ const Item = ({ item, idx }: IProps): JSX.Element => {
   const deletereport = useMutation({
     mutationKey: "delreport",
     mutationFn: async () => {
-      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/admin/report/${item.id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_SERVER_URL}/admin/report/${item.id}`,
+        {
+          withCredentials: true,
+        }
+      );
     },
     onSuccess(data) {
       queryClient.invalidateQueries("reportlist");

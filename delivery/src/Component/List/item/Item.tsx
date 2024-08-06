@@ -29,7 +29,13 @@ interface IProps {
   checkdata?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Item = ({ liststate, item1, item2, item3, checkdata }: IProps): JSX.Element => {
+const Item = ({
+  liststate,
+  item1,
+  item2,
+  item3,
+  checkdata,
+}: IProps): JSX.Element => {
   const btn = new Button("완료", "bg-blue-300");
   const [checked, setchecked] = useState(false);
   const changecheck = () => {

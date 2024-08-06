@@ -60,7 +60,7 @@ const Search = (): JSX.Element => {
     if (isdesktop) {
       setmodal(undefined);
     }
-  }, [isdesktop]);
+  }, [isdesktop, setmodal]);
   console.log(recentsearch.length);
   return (
     <div>
@@ -106,7 +106,10 @@ const Search = (): JSX.Element => {
         </div>
       </div>
       <div className="pe-5 flex justify-end">
-        <div onClick={remove} className="p-1 border rounded bg-orange-200 text-white">
+        <div
+          onClick={remove}
+          className="p-1 border rounded bg-orange-200 text-white"
+        >
           검색어 초기화
         </div>
       </div>

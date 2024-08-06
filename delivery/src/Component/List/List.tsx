@@ -9,7 +9,13 @@ interface IProps {
   checkdata?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const List = ({ checkdata, liststate, list1, list2, list3 }: IProps): JSX.Element => {
+export const List = ({
+  checkdata,
+  liststate,
+  list1,
+  list2,
+  list3,
+}: IProps): JSX.Element => {
   return (
     <div className="h-[20rem] w-[33em] border border-black overflow-y-auto">
       {liststate === 1 && (
@@ -21,7 +27,14 @@ export const List = ({ checkdata, liststate, list1, list2, list3 }: IProps): JSX
             <div>선택</div>
           </div>
           {list1?.map((item: PickCheck, idx: number) => {
-            return <Item key={idx} liststate={liststate} item1={item} checkdata={checkdata} />;
+            return (
+              <Item
+                key={idx}
+                liststate={liststate}
+                item1={item}
+                checkdata={checkdata}
+              />
+            );
           })}
         </div>
       )}
@@ -47,7 +60,12 @@ export const List = ({ checkdata, liststate, list1, list2, list3 }: IProps): JSX
             <div>완료</div>
           </div>
           {list3?.map((item: delivery, idx: number) => (
-            <Item key={idx} liststate={liststate} item3={item} checkdata={checkdata} />
+            <Item
+              key={idx}
+              liststate={liststate}
+              item3={item}
+              checkdata={checkdata}
+            />
           ))}
         </div>
       )}

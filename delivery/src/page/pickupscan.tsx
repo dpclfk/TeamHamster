@@ -17,6 +17,7 @@ const PickupScan = (): JSX.Element => {
   const changeitem = (e: ChangeEvent<HTMLInputElement>) => {
     SetPickItem(e.target.value);
   };
+  useQueryClient();
 
   const item = Debounce(pickitem, 200);
 
@@ -61,7 +62,8 @@ const PickupScan = (): JSX.Element => {
       </div>
 
       <div className="m-4 text-[1.3rem] font-bold">
-        <span className="text-orange-400">{pickitem}</span>상품을 픽업 하시겠습니까?
+        <span className="text-orange-400">{pickitem}</span>상품을 픽업
+        하시겠습니까?
       </div>
       <div className={`m-[3rem] `}>
         <Link to={"/"}>

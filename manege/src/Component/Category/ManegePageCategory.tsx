@@ -34,7 +34,9 @@ const ManegePageCategory = (): JSX.Element => {
   }, [cate]);
 
   return (
-    <div className={`pt-20 pb-10 ${center}  gap-20 text-[1.2rem] text-gray-500 font-bold`}>
+    <div
+      className={`pt-20 pb-10 ${center}  gap-20 text-[1.2rem] text-gray-500 font-bold`}
+    >
       <Link to={"/manege/report"}>
         {manegecate === "report" ? (
           <div className="text-orange-500">신고관리</div>

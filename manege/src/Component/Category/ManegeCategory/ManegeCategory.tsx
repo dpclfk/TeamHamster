@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CateItem, { ICate } from "./CateItem";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios, { AxiosResponse } from "axios";
@@ -17,7 +17,10 @@ export interface ICLick {
   name: string;
 }
 
-const ManegeCategoryList = ({ settopcate, settopname }: IProps): JSX.Element => {
+const ManegeCategoryList = ({
+  settopcate,
+  settopname,
+}: IProps): JSX.Element => {
   useQueryClient();
 
   const [cate, setcate] = useState<ICLick>();
@@ -29,14 +32,17 @@ const ManegeCategoryList = ({ settopcate, settopname }: IProps): JSX.Element => 
   const firstcate = useQuery<IData>({
     queryKey: "firstcate",
     queryFn: async () => {
-      const { data } = await axios.post(`${process.env.REACT_APP_SERVER_URL}/catefirst`, {
-        withCredentials: true,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/catefirst`,
+        {
+          withCredentials: true,
+        }
+      );
       return data;
     },
   });
 
-  const secondcate = useMutation({
+  const { data, mutate } = useMutation({
     mutationKey: "manegesecondcate",
     mutationFn: async () => {
       const { data } = await axios.post(
@@ -52,7 +58,7 @@ const ManegeCategoryList = ({ settopcate, settopname }: IProps): JSX.Element => 
     },
   });
 
-  const thirdcate = async () => {
+  const thirdcate = useCallback(async (selectcate2: number) => {
     await axios
       .post(
         `${process.env.REACT_APP_SERVER_URL}/catelist/${selectcate2}`,
@@ -63,22 +69,27 @@ const ManegeCategoryList = ({ settopcate, settopname }: IProps): JSX.Element => 
         const Children: ICate[] = data.data.category[0].Children;
         setdata3(Children);
       })
-      .catch(() => {
-        console.log("안되네");
+      .catch((err) => {
+        console.log("카테고리 확인", err);
       });
-  };
+  }, []);
 
   useEffect(() => {
     settopcate(cate?.id);
     settopname(cate?.name);
-    secondcate.mutate();
-    thirdcate();
-  }, [cate]);
+    thirdcate(selectcate2);
+  }, [cate, settopcate, settopname, mutate, thirdcate, selectcate2]);
+
+  useEffect(() => {
+    mutate();
+  }, [mutate, selectcate1]);
 
   useEffect(() => {
     setselectcate2(0);
     setdata3([]);
-  }, [selectcate1, data2[0]]);
+  }, [selectcate1, data2]);
+
+  console.log("메니지 카테 무한돌기 체크", data2, data3);
 
   return (
     <div className="w-[60rem] h-[30rem] flex border">
@@ -99,7 +110,7 @@ const ManegeCategoryList = ({ settopcate, settopname }: IProps): JSX.Element => 
       <div className="h-[100%] flex-1 border-e overflow-y-auto">
         <div className="p-2">
           {selectcate1 !== undefined &&
-            secondcate.data?.map((item: ICate, idx: number) => (
+            data?.map((item: ICate, idx: number) => (
               <CateItem
                 key={idx}
                 item={item}
