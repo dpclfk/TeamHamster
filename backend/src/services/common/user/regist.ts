@@ -42,7 +42,7 @@ export default async (req: Request, res: Response) => {
 
     const nowmobile = reqbody.mobile.replaceAll("-", "");
 
-    const regist = await User.create(
+    const regist: User = await User.create(
       {
         email: encryptionemail,
         password: encryptionpw,
@@ -51,7 +51,7 @@ export default async (req: Request, res: Response) => {
       { transaction }
     );
 
-    const store = await Store.create(
+    const store: Store = await Store.create(
       {
         nick: reqbody.nick,
         mobile: nowmobile,
@@ -63,7 +63,7 @@ export default async (req: Request, res: Response) => {
       await transaction.commit();
       await name.addUser(regist);
     } else {
-      const newname = await Name.create({
+      const newname: Name = await Name.create({
         name: reqbody.name,
       });
       await transaction.commit();

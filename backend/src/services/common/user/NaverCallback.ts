@@ -12,8 +12,8 @@ export default async (req: Request, res: Response) => {
   const state: string = req.query.state as string;
   const redirectUrl = req.body.callbackUrl;
 
-  const client_id = process.env.CLIENT_N_ID;
-  const client_secret = process.env.CLIENT_N_SECRET;
+  const client_id: string | undefined = process.env.CLIENT_N_ID;
+  const client_secret: string | undefined = process.env.CLIENT_N_SECRET;
 
   const tokenEndpoint = "https://nid.naver.com/oauth2.0/token";
   const transaction: Transaction = await sequelize.transaction();
@@ -104,7 +104,7 @@ export default async (req: Request, res: Response) => {
         await transaction.commit();
         await name.addUser(regist);
       } else {
-        const newname = await Name.create({
+        const newname: Name = await Name.create({
           name: userInfoResponse.name,
         });
         await transaction.commit();

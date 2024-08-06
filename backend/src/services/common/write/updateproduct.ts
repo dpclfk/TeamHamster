@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Category, DeliveryCost, ExtraAddress, Product, Store, sequelize } from "../../../models";
+import { Category, ExtraAddress, Product, Store } from "../../../models";
 import { bankeyword } from "../../../models/mongoDB";
 
 export default async (req: Request, res: Response) => {
@@ -9,7 +9,7 @@ export default async (req: Request, res: Response) => {
     if (!reqbody.user) {
       throw Error("not login");
     }
-    const nowproduct = await Product.findOne({
+    const nowproduct: Product | null = await Product.findOne({
       where: { id: req.params.id },
     });
     const nowuser: Store | null = await Store.findOne({
