@@ -198,7 +198,7 @@ jobs:
 
       - name: server env
         working-directory: ./backend
-        run: ${{ secrets.SERVER_ENV }}'
+        run: ${{ secrets.SERVER_ENV }}
 
       - name: Build Back
         working-directory: ./backend
@@ -223,7 +223,7 @@ jobs:
 
             nvm use --lts
             cd /var/www/backend
-            npm i --production
+            npm i --production'
 
       - name: Start Server
         run: |
