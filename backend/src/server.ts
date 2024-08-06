@@ -16,7 +16,7 @@ dotenv.config();
 const app: Express = express();
 app.use(cookieParser(process.env.COOKIE || "test"));
 
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3080);
 app.set("url", process.env.MONGURL || "mongodb://localhost:27017");
 sequelize.sync({ force: false });
 
