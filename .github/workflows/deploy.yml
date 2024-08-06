@@ -121,6 +121,10 @@ jobs:
         working-directory: ./front
         run: npm i
 
+      - name: frontenv
+        working-directory: ./front
+        run: ${{ secrets.FRONT_ENV }}
+
       - name: Build Front
         working-directory: ./front
         run: npm run build
