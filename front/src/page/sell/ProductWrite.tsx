@@ -44,10 +44,7 @@ interface IProps {
   dataCheckIdxValue: number;
 }
 
-const ProductWrite = ({
-  mainDataGet,
-  dataCheckIdxValue,
-}: IProps): JSX.Element => {
+const ProductWrite = ({ mainDataGet, dataCheckIdxValue }: IProps): JSX.Element => {
   //hook
   const navigate = useNavigate();
   const loca = useLocation();
@@ -131,9 +128,7 @@ const ProductWrite = ({
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
 
@@ -151,6 +146,7 @@ const ProductWrite = ({
 
     for (let i = 0; i < files.length; i++) {
       formData.append("img", files[i]);
+      console.log(formData);
     }
 
     axios
@@ -184,9 +180,7 @@ const ProductWrite = ({
   };
   const asyncOperation = useCallback(
     async (item: any) => {
-      return new Promise<File>((resolve) =>
-        setTimeout(() => resolve(getImgBlob(item)), 300)
-      );
+      return new Promise<File>((resolve) => setTimeout(() => resolve(getImgBlob(item)), 300));
     },
     [getImgBlob]
   );
@@ -201,8 +195,7 @@ const ProductWrite = ({
       .then(async (data: AxiosResponse<IDataProduct<IProductPage>>) => {
         console.log(data);
         const values = data.data.product;
-        const { image, title, discription, categoryId, Category, price } =
-          values;
+        const { image, title, discription, categoryId, Category, price } = values;
 
         setFormData({
           productName: title,
@@ -407,11 +400,7 @@ const ProductWrite = ({
             {previewUrls.map((url, index) => (
               <div key={index} className="relative border ">
                 {/* <div className="w-32 h-32" /> */}
-                <img
-                  src={url}
-                  alt={`Preview ${index}`}
-                  className="w-32 h-32 uploadImgElem"
-                />
+                <img src={url} alt={`Preview ${index}`} className="w-32 h-32 uploadImgElem" />
                 <button
                   onClick={() => handleRemoveImage(index)}
                   className="absolute top-0 right-[0rem] bg-red-500 text-white p-1 rounded"
@@ -441,9 +430,7 @@ const ProductWrite = ({
           />
         </div>
         <div className="mt-3">
-          <h2 className="text-xl font-bold mb-4 border-b border-gray-500">
-            카테고리
-          </h2>
+          <h2 className="text-xl font-bold mb-4 border-b border-gray-500">카테고리</h2>
           <div className="flex space-x-4">
             <div className="w-1/3 border p-4 h-[27rem] overflow-auto">
               <h3 className="font-semibold">선택</h3>
@@ -481,10 +468,7 @@ const ProductWrite = ({
                           });
                           setLastClickCateId(category.id);
                           if (showCateValue.length < 2) {
-                            setShowCateValue((data) => [
-                              ...data,
-                              category.name,
-                            ]);
+                            setShowCateValue((data) => [...data, category.name]);
                           } else {
                             setShowCateValue((data) => {
                               return [...data.slice(0, 1), category.name];
@@ -510,10 +494,7 @@ const ProductWrite = ({
                         if (category.id) {
                           setLastClickCateId(category.id);
                           if (showCateValue.length < 3) {
-                            setShowCateValue((data) => [
-                              ...data,
-                              category.name,
-                            ]);
+                            setShowCateValue((data) => [...data, category.name]);
                           } else {
                             setShowCateValue((data) => {
                               return [...data.slice(0, 2), category.name];
@@ -532,9 +513,7 @@ const ProductWrite = ({
           <div className="mt-4">
             <h3 className="font-semibold">선택:</h3>
             <div className="flex">
-              <span className="text-orange-500">
-                {showCateValue.join(" → ")}
-              </span>
+              <span className="text-orange-500">{showCateValue.join(" → ")}</span>
             </div>
           </div>
         </div>
@@ -557,9 +536,7 @@ const ProductWrite = ({
           />
         </div>
         <div>
-          <div className="text-[1.3rem] font-bold border-b border-gray-500">
-            주소
-          </div>
+          <div className="text-[1.3rem] font-bold border-b border-gray-500">주소</div>
           <div className="mt-5 h-[20rem] border overflow-auto">
             {adress &&
               adress.map((item: IAdressData, idx: number) => (
@@ -584,10 +561,7 @@ const ProductWrite = ({
         <div className="mt-10">
           <div className="mb-4">
             <div className="flex items-center">
-              <label
-                htmlFor="price"
-                className="me-4 block text-[1.3rem] font-medium text-gray-700"
-              >
+              <label htmlFor="price" className="me-4 block text-[1.3rem] font-medium text-gray-700">
                 가격 :
               </label>
               <input
