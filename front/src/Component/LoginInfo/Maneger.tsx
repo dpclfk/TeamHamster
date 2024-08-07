@@ -9,7 +9,7 @@ interface IProps {
 
 const Maneger = ({ userDatas }: IProps): JSX.Element => {
   const manege = () => {
-    window.location.replace("https://test.dpclfk.com/admin/report");
+    window.location.replace("https://test.dpclfk.com/admin");
   };
   const btn = new Button("관리자 페이지", "bg-orange-400");
   return (
