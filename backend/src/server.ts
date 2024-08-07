@@ -32,7 +32,7 @@ app.use(
 );
 console.log("test2");
 
-app.use("/api/imgs", express.static("uploads"));
+app.use("/api/imgs", express.static("/var/www/backend/uploads"));
 
 app.use("/api", router);
 
