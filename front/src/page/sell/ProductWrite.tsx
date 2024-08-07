@@ -102,9 +102,6 @@ const ProductWrite = ({ mainDataGet, dataCheckIdxValue }: IProps): JSX.Element =
 
       const newPreviewUrls = newImages.map((file) => URL.createObjectURL(file));
       setPreviewUrls((prev) => [...prev, ...newPreviewUrls]);
-
-      console.log(newImages, "ASdascasca", newPreviewUrls, "ZXBXBAGFAGA");
-      console.log(images, "YEWY%#&#$&#$&");
     }
   };
   const handleRemoveImage = (index: number) => {
@@ -148,9 +145,7 @@ const ProductWrite = ({ mainDataGet, dataCheckIdxValue }: IProps): JSX.Element =
     const formData: FormData = new FormData();
 
     for (let i = 0; i < files.length; i++) {
-      console.log(files[i]);
       formData.append("img", files[i]);
-      console.log(formData);
     }
 
     axios
@@ -159,7 +154,6 @@ const ProductWrite = ({ mainDataGet, dataCheckIdxValue }: IProps): JSX.Element =
         headers: { "Content-type": "multipart/form-data" },
       })
       .then((data: AxiosResponse<IImgUpLoaderRes>) => {
-        console.log(data);
         writeClick(data.data.url);
       })
       .catch(() => {
@@ -170,7 +164,6 @@ const ProductWrite = ({ mainDataGet, dataCheckIdxValue }: IProps): JSX.Element =
     await axios
       .post(`${serverUrl}/catefirst`, {}, {})
       .then((data: AxiosResponse<IFirstCateRes>) => {
-        console.log(data);
         const cates = data.data.category;
         setCategories(cates);
       })
