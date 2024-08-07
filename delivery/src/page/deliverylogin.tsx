@@ -49,7 +49,8 @@ const DeliveryLoginPage = ({ setUserLogin }: IProps): JSX.Element => {
           setLoginCheck(false);
           setUserLogin(true);
           console.log("로그인성공, 이메일주소:" + result.email);
-          navigate("/"); // 로그인 성공시 홈으로 이동합니다.
+          window.location.replace("https://test.dpclfk.com/delivery/");
+          // 로그인 성공시 홈으로 이동합니다.
         } else {
           setLoginCheck(true);
         }
