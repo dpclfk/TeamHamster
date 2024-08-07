@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "../../lib/Button/Button";
 import { TinyButton } from "../Button/Button";
 import { IUserDatas } from "../../lib/interFace";
@@ -8,9 +8,8 @@ interface IProps {
 }
 
 const Maneger = ({ userDatas }: IProps): JSX.Element => {
-  const navigate = useNavigate();
   const manege = () => {
-    navigate("/report");
+    window.location.replace("https://test.dpclfk.com/admin/report");
   };
   const btn = new Button("관리자 페이지", "bg-orange-400");
   return (

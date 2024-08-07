@@ -34,7 +34,7 @@ const ManegeLayout = (): JSX.Element => {
   useQueryClient();
 
   const onclick = () => {
-    navigate("/");
+    window.location.replace("http://test.dpclfk.com/");
   };
 
   const onlogout = () => {
@@ -73,7 +73,7 @@ const ManegeLayout = (): JSX.Element => {
             <div className={`${center}`}>
               <img src="/imgs/hamster.png" alt="imgNotFound" className="h-[4rem]"></img>
               {log?.admin ? (
-                <Link to={"/manege/report"}>
+                <Link to={"/report"}>
                   <div>
                     <div className="text-[2rem] text-white font-bold">햄스터마켓</div>
                     <div className="text-[1rem] text-white font-bold">관리자 페이지</div>
@@ -114,17 +114,14 @@ const ManegeLayout = (): JSX.Element => {
             <div>
               <ManegePageCategory />
               <Routes>
-                <Route
-                  path="/manege/login"
-                  element={<AdminLoginPage setUserLogin={setUserLogin} />}
-                />
-                <Route path="/manege/report" element={<ManegeReport />} />
-                <Route path="/manege/category" element={<ManegeCategory />} />
-                <Route path="/manege/keyword" element={<ManegeBenKeyword />} />
-                <Route path="/manege/user" element={<ManegeUser />} />
-                <Route path="/manege/point" element={<ManegePoint />} />
-                <Route path="/manege/delivery" element={<ManegeDeliveryTip />} />
-                <Route path="/manege/authority" element={<Authority />} />
+                <Route path="/login" element={<AdminLoginPage setUserLogin={setUserLogin} />} />
+                <Route path="/report" element={<ManegeReport />} />
+                <Route path="/category" element={<ManegeCategory />} />
+                <Route path="/keyword" element={<ManegeBenKeyword />} />
+                <Route path="/user" element={<ManegeUser />} />
+                <Route path="/point" element={<ManegePoint />} />
+                <Route path="/delivery" element={<ManegeDeliveryTip />} />
+                <Route path="/authority" element={<Authority />} />
               </Routes>
             </div>
           ) : (
