@@ -10,8 +10,9 @@ import router from "./controllers";
 import { DeliveryCost, Name, Store, User, sequelize } from "./models";
 import { point } from "./models/mongoDB";
 import basicCate from "./services/common/basicCate";
+import path from "path";
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
 console.log("test1");
 
 const app: Express = express();
