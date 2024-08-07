@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { mobilebox } from "./styles";
 import { IoIosHome } from "react-icons/io";
 import { BsPersonFill } from "react-icons/bs";
@@ -43,7 +43,7 @@ const LayOut = (): JSX.Element => {
   const [camp, setcamp] = useState<string>("");
   const [workstate, SetWorkState] = useState<boolean>(false);
   const [liststate, SetListState] = useState(0);
-
+  const navigate = useNavigate();
   const [intervalGpsGet, setIntervalGpsGet] = useState<any>();
 
   //env
@@ -198,8 +198,9 @@ const LayOut = (): JSX.Element => {
               </div>
               <div
                 onClick={() => {
-                  window.location.replace("https://test.dpclfk.com/delivery");
+                  // window.location.replace("https://test.dpclfk.com/delivery");
                   logOut();
+                  navigate("/");
                   window.location.reload();
                 }}
                 className="ms-2 p-1 border text-white rounded bg-blue-400"
