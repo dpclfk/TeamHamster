@@ -6,14 +6,12 @@ import { LargeButton } from "../Component/Button/Button";
 import { Button } from "../lib/Button/Button";
 import { Modalcontent, Modalstate } from "../Context/Modal/Modal";
 import { useSetRecoilState } from "recoil";
-import { useNavigate } from "react-router-dom";
 
 interface IProps {
   setUserLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DeliveryLoginPage = ({ setUserLogin }: IProps): JSX.Element => {
-  const navigate = useNavigate();
   const setsystemonoff = useSetRecoilState(Modalstate);
   const setModalcontent = useSetRecoilState(Modalcontent);
 
@@ -49,7 +47,8 @@ const DeliveryLoginPage = ({ setUserLogin }: IProps): JSX.Element => {
           setLoginCheck(false);
           setUserLogin(true);
           console.log("로그인성공, 이메일주소:" + result.email);
-          window.location.replace("https://test.dpclfk.com/delivery/");
+          window.location.reload();
+          // window.location.replace("https://test.dpclfk.com/delivery/")
           // 로그인 성공시 홈으로 이동합니다.
         } else {
           setLoginCheck(true);
