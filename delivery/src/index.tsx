@@ -6,9 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -21,7 +19,7 @@ root.render(
   // <React.StrictMode>
 
   <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
+    <BrowserRouter basename="/delivery">
       <RecoilRoot>
         <App />
       </RecoilRoot>
