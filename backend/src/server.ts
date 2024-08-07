@@ -53,12 +53,12 @@ console.log(process.env.IV);
 const basicvalue = async () => {
   try {
     if (!(await User.findOne())) {
-      mongoose.connection.dropCollection("deliveries");
-      mongoose.connection.dropCollection("points");
-      mongoose.connection.dropCollection("bankeywords");
+      await mongoose.connection.dropCollection("deliveries");
+      await mongoose.connection.dropCollection("points");
+      await mongoose.connection.dropCollection("bankeywords");
 
-      DeliveryCost.create({ cost: 3000 });
-      point.create({ pointPercent: 1000 });
+      await DeliveryCost.create({ cost: 3000 });
+      await point.create({ pointPercent: 1000 });
 
       const key: Buffer = crypto.scryptSync("hgaomasttmexrj", `${process.env.KEY || ""}`, 32);
       const iv: Buffer = Buffer.from(`${process.env.IV}`, "base64");
