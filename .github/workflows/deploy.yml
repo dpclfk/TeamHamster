@@ -201,7 +201,7 @@ jobs:
         run: ${{ secrets.SERVER_ENV }}
 
       - name: config json
-        working-directory: ./backend/config
+        working-directory: ./backend
         run: |
           echo   "{
            \"development\": {
