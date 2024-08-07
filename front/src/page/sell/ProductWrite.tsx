@@ -100,8 +100,12 @@ const ProductWrite = ({ mainDataGet, dataCheckIdxValue }: IProps): JSX.Element =
       const newImages = Array.from(files);
       setImages((prev) => [...prev, ...newImages]);
 
+      console.log(images, "YEWY%#&#$&#$&");
+
       const newPreviewUrls = newImages.map((file) => URL.createObjectURL(file));
       setPreviewUrls((prev) => [...prev, ...newPreviewUrls]);
+
+      console.log(newImages, "ASdascasca", newPreviewUrls, "ZXBXBAGFAGA");
     }
   };
   const handleRemoveImage = (index: number) => {
