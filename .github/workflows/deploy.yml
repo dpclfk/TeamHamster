@@ -200,6 +200,21 @@ jobs:
         working-directory: ./backend
         run: ${{ secrets.SERVER_ENV }}
 
+      - name: config json
+        working-directory: ./backend/config
+        run: |
+          echo   "{
+           \"development\": {
+              \"username\": \"${{ secrets.MYSQL_USER }}\",
+              \"password\": \"${{ secrets.MYSQL_PASSWORD }}\",
+              \"database\": \"${{ secrets.MYSQL_DATABASE }}\",
+              \"host\": \"127.0.0.1\",
+              \"dialect\": \"mysql\",
+              \"timezone\": \"+09:00\",
+
+            }
+          }" > config/config.json
+
       - name: Build Back
         working-directory: ./backend
         run: npx tsc
