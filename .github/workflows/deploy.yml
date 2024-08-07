@@ -210,8 +210,7 @@ jobs:
               \"database\": \"${{ secrets.MYSQL_DATABASE }}\",
               \"host\": \"127.0.0.1\",
               \"dialect\": \"mysql\",
-              \"timezone\": \"+09:00\",
-
+              \"timezone\": \"+09:00\"
             }
           }" > config/config.json
 
