@@ -10,7 +10,7 @@ export default async (req: Request, res: Response) => {
     const reqbody = req.body;
 
     const key: Buffer = crypto.scryptSync("hgaomasttmexrj", `${process.env.KEY || ""}`, 32);
-    const iv: string = process.env.IV || "";
+    const iv: Buffer = Buffer.from(`${process.env.IV}`, "base64");
 
     const usercheck: User | null = await User.findOne({
       where: { mobile: reqbody.mobile, Oauth: "햄스터" },
