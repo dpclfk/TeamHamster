@@ -179,9 +179,7 @@ const LayOut = (): JSX.Element => {
   return (
     <div className="h-[50rem] ">
       <div className="m-auto max-w-[35rem] h-[6rem] bg-blue-300">
-        <div
-          className={` ${mobilebox} h-[100%] flex items-center justify-between`}
-        >
+        <div className={` ${mobilebox} h-[100%] flex items-center justify-between`}>
           <div className="flex">
             <div className="h-[3rem] w-[3rem] ">
               <img src="/imgs/hamster.png" alt="imgNotFoundOnReact"></img>
@@ -196,14 +194,12 @@ const LayOut = (): JSX.Element => {
               <div className="text-center text-white">
                 <div>배송파트너</div>
                 <div>{log?.nick} 님</div>
-                {workstate && (
-                  <div className="border rounded bg-yellow-400">업무중</div>
-                )}
+                {workstate && <div className="border rounded bg-yellow-400">업무중</div>}
               </div>
               <div
                 onClick={() => {
                   logOut();
-                  window.location.reload();
+                  window.location.replace("https://test.dpclfk.com/admin");
                 }}
                 className="ms-2 p-1 border text-white rounded bg-blue-400"
               >
@@ -223,33 +219,22 @@ const LayOut = (): JSX.Element => {
               <Routes>
                 <Route
                   path="/"
-                  element={
-                    <Main start={start} end={end} workstate={workstate} />
-                  }
+                  element={<Main start={start} end={end} workstate={workstate} />}
                 ></Route>
                 <Route path="/pickupscan" element={<PickupScan />}></Route>
                 <Route
                   path="/pickupcheck"
-                  element={
-                    <PickupCheck liststate={liststate} checklist={saveList} />
-                  }
+                  element={<PickupCheck liststate={liststate} checklist={saveList} />}
                 ></Route>
-                <Route
-                  path="/selectcamp"
-                  element={<SelectCamp setcamp={setcamp} />}
-                ></Route>
+                <Route path="/selectcamp" element={<SelectCamp setcamp={setcamp} />}></Route>
                 <Route
                   path="/pickuplist"
-                  element={
-                    <PickUpList liststate={liststate} checklist={saveList} />
-                  }
+                  element={<PickUpList liststate={liststate} checklist={saveList} />}
                 ></Route>
                 <Route path="/deliveryscan" element={<DeliveryScan />}></Route>
                 <Route
                   path="/mypage"
-                  element={
-                    <MyPage workstate={workstate} camp={camp} user={log} />
-                  }
+                  element={<MyPage workstate={workstate} camp={camp} user={log} />}
                 ></Route>
               </Routes>
             </div>

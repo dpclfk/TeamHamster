@@ -38,8 +38,7 @@ const ManegeLayout = (): JSX.Element => {
 
   const onlogout = () => {
     logout.mutate();
-    // window.location.replace("http://test.dpclfk.com/admin");
-    window.location.reload();
+    window.location.replace("http://test.dpclfk.com/admin");
   };
 
   const serverUrl = process.env.REACT_APP_SERVER_URL;
