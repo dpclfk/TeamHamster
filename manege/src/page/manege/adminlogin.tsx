@@ -5,14 +5,12 @@ import { LargeButton } from "../../Component/Button/Button";
 import { Button } from "../../lib/Button/Button";
 import { useSetRecoilState } from "recoil";
 import { Modalcontent, Modalstate } from "../../Context/Modal/Modal";
-import { useNavigate } from "react-router-dom";
 
 interface IProps {
   setUserLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AdminLoginPage = ({ setUserLogin }: IProps): JSX.Element => {
-  const navigate = useNavigate();
   const modalvalue = useSetRecoilState(Modalcontent);
   const onoffModal = useSetRecoilState(Modalstate);
   const [email, setEmail] = useState("");
@@ -47,7 +45,7 @@ const AdminLoginPage = ({ setUserLogin }: IProps): JSX.Element => {
           setLoginCheck(false);
           setUserLogin(true);
           console.log("로그인성공, 이메일주소:" + result.email);
-          navigate("/report"); // 로그인 성공시 홈으로 이동합니다.
+          window.location.replace("https://test.dpclfk.com/admin/"); // 로그인 성공시 홈으로 이동합니다.
         } else {
           setLoginCheck(true);
         }
