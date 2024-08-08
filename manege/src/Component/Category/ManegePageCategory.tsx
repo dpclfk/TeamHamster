@@ -27,7 +27,7 @@ const ManegePageCategory = (): JSX.Element => {
     setManegeCate("authority");
   }, []);
 
-  const cate = useLocation().pathname.slice(8);
+  const cate = useLocation().pathname.slice(1);
 
   useEffect(() => {
     setManegeCate(cate);

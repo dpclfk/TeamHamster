@@ -40,7 +40,7 @@ const ManegeLayout = (): JSX.Element => {
   const onlogout = () => {
     // window.location.replace("http://test.dpclfk.com/admin");
     logout.mutate();
-    navigate("/");
+    // navigate("/");
     window.location.reload();
   };
 
