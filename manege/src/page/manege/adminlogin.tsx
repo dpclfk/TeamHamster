@@ -48,8 +48,8 @@ const AdminLoginPage = ({ setUserLogin }: IProps): JSX.Element => {
           setUserLogin(true);
           console.log("로그인성공, 이메일주소:" + result.email);
           // window.location.replace("https://test.dpclfk.com/admin/"); // 로그인 성공시 홈으로 이동합니다.
-          // window.location.reload(); // 로그인 성공시 홈으로 이동합니다.
           navigate("/report");
+          window.location.reload(); // 로그인 성공시 홈으로 이동합니다.
         } else {
           setLoginCheck(true);
         }
