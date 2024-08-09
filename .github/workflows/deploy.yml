@@ -129,6 +129,10 @@ jobs:
         working-directory: ./front
         run: npm run build
 
+      - name: Delete map front
+        working-directory: ./front/build
+        run: rm -rf ./**/*/*.map
+
       - name: Install Dependencies of Delivery
         working-directory: ./delivery
         run: npm i
@@ -141,6 +145,10 @@ jobs:
         working-directory: ./delivery
         run: npm run build
 
+      - name: Delete map delivery
+        working-directory: ./delivery/build
+        run: rm -rf ./**/*/*.map
+
       - name: Install Dependencies of manege
         working-directory: ./manege
         run: npm i
@@ -152,6 +160,10 @@ jobs:
       - name: Build manege
         working-directory: ./manege
         run: npm run build
+
+      - name: Delete map manege
+        working-directory: ./manege/build
+        run: rm -rf ./**/*/*.map
 
       - name: Copy Files to EC2
         run: |
