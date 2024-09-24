@@ -269,5 +269,4 @@ jobs:
             npm install -g pm2
             pm2 stop marketbackend
             pm2 delete marketbackend
-            cd /var/www/market/backend
-            pm2 start npm --name "marketbackend" -- run start:pro'
+            pm2 start /var/www/market/backend/src/server.js --name "marketbackend"'
