@@ -1,3 +1,10 @@
 {
-  "development": {}
+  "development": {
+    "username": "hamster",
+    "password": "1q2w3e4r!Q",
+    "database": "hamster",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "timezone": "+09:00"
+  }
 }
