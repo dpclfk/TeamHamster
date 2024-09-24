@@ -270,4 +270,4 @@ jobs:
             pm2 stop marketbackend
             pm2 delete marketbackend
             cd /var/www/market/backend
-            pm2 start npm --name "marketbackend" -- start'
+            pm2 start npm --name "marketbackend" -- run start:pro'
