@@ -18,7 +18,7 @@ root.render(
   // <React.StrictMode>
 
   <QueryClientProvider client={queryClient}>
-    <BrowserRouter basename="/admin">
+    <BrowserRouter basename="/market/admin">
       <RecoilRoot>
         <App />
       </RecoilRoot>

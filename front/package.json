@@ -53,5 +53,6 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/navermaps": "^3.7.5"
-  }
+  },
+  "homepage": "/market/"
 }
