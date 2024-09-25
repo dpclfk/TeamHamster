@@ -89,6 +89,7 @@ jobs:
       - name: check mongo
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          sudo service mongod start
           sudo service mongod status'
 
       - name: test mongo user
