@@ -33,11 +33,11 @@ app.use(
 );
 console.log("test2");
 
-app.use("/api/imgs", express.static(path.join(__dirname, "..", "uploads")));
+app.use("/marketapi/imgs", express.static(path.join(__dirname, "..", "uploads")));
 
 console.log(path.join(__dirname, "..", "uploads"));
 
-app.use("/api", router);
+app.use("/marketapi", router);
 
 mongoose.connect(app.get("url"), {
   dbName: "hamster",

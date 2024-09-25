@@ -1,10 +1,11 @@
 import multer from "multer";
 import { Request, Response } from "express";
+import path from "path";
 
 const upload: multer.Multer = multer({
   storage: multer.diskStorage({
     destination: (_req, _file, callback) => {
-      callback(null, "/var/www/backend/uploads");
+      callback(null, path.join(__dirname, "../../..", "uploads"));
     },
     filename: (_req, file, callback) => {
       file.originalname = Buffer.from(file.originalname, "ascii").toString("utf8");
