@@ -73,7 +73,7 @@ const ManegeLayout = (): JSX.Element => {
         <div className="p-1 h-[6rem] bg-orange-600">
           <div className={`${box} h-[100%] flex justify-between items-center `}>
             <div className={`${center}`}>
-              <img src="/imgs/hamster.png" alt="imgNotFound" className="h-[4rem]"></img>
+              <img src="/marketapi/imgs/hamster.png" alt="imgNotFound" className="h-[4rem]"></img>
               {log?.admin ? (
                 <Link to={"/report"}>
                   <div>
@@ -90,7 +90,7 @@ const ManegeLayout = (): JSX.Element => {
             </div>
             <div className={`${center} gap-3`}>
               <div className="h-[3rem] w-[3rem]">
-                <img className="h-[100%]" alt="imgNotFound" src="/imgs/good.png"></img>
+                <img className="h-[100%]" alt="imgNotFound" src="/marketapi/imgs/good.png"></img>
               </div>
               <div className={`text-white ${log?.nick ? "w-[7rem]" : "w-[2rem]"} `}>
                 {log?.admin && `${log?.nick}`}

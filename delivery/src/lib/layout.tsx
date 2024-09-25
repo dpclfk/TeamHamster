@@ -182,7 +182,7 @@ const LayOut = (): JSX.Element => {
         <div className={` ${mobilebox} h-[100%] flex items-center justify-between`}>
           <div className="flex">
             <div className="h-[3rem] w-[3rem] ">
-              <img src="/imgs/hamster.png" alt="imgNotFoundOnReact"></img>
+              <img src="/marketapi/imgs/hamster.png" alt="imgNotFoundOnReact"></img>
             </div>
             <div className="text-center text-[0.8rem] text-white font-bold">
               <div>햄스터마켓</div>
