@@ -34,13 +34,11 @@ const ManegeLayout = (): JSX.Element => {
   useQueryClient();
 
   const onclick = () => {
-    window.location.replace("http://test.dpclfk.com/");
+    window.location.replace("http://www.dpclfk.com/");
   };
 
   const onlogout = () => {
-    // window.location.replace("http://test.dpclfk.com/admin");
     logout.mutate();
-    // navigate("/");
     window.location.reload();
   };
 

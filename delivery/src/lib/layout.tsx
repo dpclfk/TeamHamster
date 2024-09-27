@@ -198,9 +198,7 @@ const LayOut = (): JSX.Element => {
               </div>
               <div
                 onClick={() => {
-                  // window.location.replace("https://test.dpclfk.com/delivery");
                   logOut();
-                  // navigate("/");
                   window.location.reload();
                 }}
                 className="ms-2 p-1 border text-white rounded bg-blue-400"
