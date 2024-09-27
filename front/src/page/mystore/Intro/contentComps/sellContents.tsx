@@ -6,10 +6,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Modal, MapId, ReviewId, ImgUrl } from "../../../../Context/Modal";
 import { useSetRecoilState } from "recoil";
-import {
-  Modalcontent,
-  Modalstate,
-} from "../../../../Context/SystemModal/Modal";
+import { Modalcontent, Modalstate } from "../../../../Context/SystemModal/Modal";
+import errorimg from "../../../../hamster.png";
 
 interface IProps {
   data: IProduct;
@@ -69,11 +67,7 @@ const SellContent = ({ data, isBuyTap = false, getData, value }: IProps) => {
 
   const confirmation = () => {
     axios
-      .post(
-        `${serverUrl}/purchaseCheck/${data.id}`,
-        {},
-        { withCredentials: true }
-      )
+      .post(`${serverUrl}/purchaseCheck/${data.id}`, {}, { withCredentials: true })
       .then((data) => {
         setModalcontent("checkpurchase");
         setsystemonoff(true);
@@ -135,27 +129,20 @@ const SellContent = ({ data, isBuyTap = false, getData, value }: IProps) => {
         }}
       >
         {/* 이미지 */}
-        <div
-          className={`h-[220px]  bg-[length:220px_240px] relative ${center}`}
-        >
+        <div className={`h-[220px]  bg-[length:220px_240px] relative ${center}`}>
           <img
-            src={
-              data.image ? `${imgBase}${data.image[0]}` : `${imgBase}good.png`
-            }
+            src={data.image ? `${imgBase}${data.image[0]}` : `${imgBase}good.png`}
             alt="이미지 오류"
+            onError={(e) => (e.currentTarget.src = errorimg)}
             className="absolute h-[100%] w-[100%] top-0"
           />
           {imgCurtainActive && (
             <>
-              <div
-                className={`${center} bg-black opacity-35 h-[100%] w-[100%]`}
-              />
+              <div className={`${center} bg-black opacity-35 h-[100%] w-[100%]`} />
               <div
                 className={`${center} absolute border-2 border-white rounded-full w-[80px] h-[80px]`}
               >
-                <div
-                  className={`flex text-white ${blockTextOver} text-2xl font-medium`}
-                >
+                <div className={`flex text-white ${blockTextOver} text-2xl font-medium`}>
                   {data.itemState}
                 </div>
               </div>
@@ -173,10 +160,8 @@ const SellContent = ({ data, isBuyTap = false, getData, value }: IProps) => {
             </span>
             <span>
               {data.createdAt
-                ? Math.floor(
-                    (+new Date() - +new Date(data.createdAt)) /
-                      (1000 * 60 * 60 * 24)
-                  ) + "일전"
+                ? Math.floor((+new Date() - +new Date(data.createdAt)) / (1000 * 60 * 60 * 24)) +
+                  "일전"
                 : "따봉일"}
             </span>
           </div>

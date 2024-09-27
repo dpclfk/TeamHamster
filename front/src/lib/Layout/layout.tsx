@@ -216,18 +216,25 @@ const Layout = ({
           <div>
             <div className="border border-t border-b">
               <div className={`${box} ${center} py-[1rem]  text-gray-400 `}>
-                <div>팀이름</div>
+                <div className="text-center">
+                  팀이름 <br /> Team Hamster
+                </div>
                 <div className="mx-[1.5rem] h-[1rem] border-[1px] border-gray-200 "></div>
-                <div>프로젝트 이름</div>
+                <div className="text-center">
+                  프로젝트 이름 <br /> Hamster Market
+                </div>
                 <div className="mx-[1.5rem] h-[1rem] border-[1px] border-gray-200 "></div>
-
-                <div>팀원명단</div>
-                <div className="mx-[1.5rem] h-[1rem] border-[1px] border-gray-200 "></div>
-
-                <div>담당영역</div>
-                <div className="mx-[1.5rem] h-[1rem] border-[1px] border-gray-200 "></div>
-
-                <div>깃주소</div>
+                <div className="text-center">
+                  <div>깃주소</div>
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => {
+                      window.open("https://github.com/dpclfk/TeamHamster");
+                    }}
+                  >
+                    https://github.com/dpclfk/TeamHamster
+                  </div>
+                </div>
               </div>
             </div>
           </div>
