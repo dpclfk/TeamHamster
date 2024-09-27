@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useBreakPoint } from "../../CustomHook/BreakPoint";
 import { center } from "../../lib/styles";
-import errorimg from "../../errorimg.png";
+import errorimg from "../../hamster.png";
 
 export interface IList {
   id: number;

@@ -1,5 +1,5 @@
 import { useBreakPoint } from "../../../CustomHook/BreakPoint";
-import errorimg from "../../../errorimg.png";
+import errorimg from "../../../hamster.png";
 
 interface IProps {
   item: string;
