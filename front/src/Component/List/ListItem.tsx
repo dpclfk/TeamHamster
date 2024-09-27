@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useBreakPoint } from "../../CustomHook/BreakPoint";
 import { center } from "../../lib/styles";
+import errorimg from "../../errorimg.png";
 
 export interface IList {
   id: number;
@@ -27,6 +28,7 @@ const Item = ({ item }: IProps): JSX.Element => {
           <img
             className="w-[100%] h-[190px] flex"
             src={`${item.img}`}
+            onError={(e) => (e.currentTarget.src = errorimg)}
             alt="itemimg"
           ></img>
         </div>
@@ -36,9 +38,7 @@ const Item = ({ item }: IProps): JSX.Element => {
             <div>
               <span className="text-[1.2rem] font-bold">{item.price}</span> 원
             </div>
-            <div className="text-[0.8rem] text-gray-500">
-              {item.createdAt}일 전
-            </div>
+            <div className="text-[0.8rem] text-gray-500">{item.createdAt}일 전</div>
           </div>
         </div>
       </div>

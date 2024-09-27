@@ -1,4 +1,5 @@
 import { useBreakPoint } from "../../../CustomHook/BreakPoint";
+import errorimg from "../../../errorimg.png";
 
 interface IProps {
   item: string;
@@ -16,6 +17,7 @@ const Imgs = ({ item }: IProps): JSX.Element => {
       <img
         className="h-[100%] w-[100%]"
         src={`${imgBase}${item}`}
+        onError={(e) => (e.currentTarget.src = errorimg)}
         alt="productimage"
       ></img>
     </div>
