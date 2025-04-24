@@ -170,15 +170,13 @@ jobs:
       - name: Copy Files to EC2
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
-            rm -rf /var/www/market/front
-            mkdir /var/www/market/front
-            rm -rf /var/www/market/deliveries
-            mkdir /var/www/market/deliveries
-            rm -rf /var/www/market/manege
-            mkdir /var/www/market/manege'
+            rm -rf /var/www/market
+            mkdir -p /var/www/market/front
+            mkdir -p /var/www/market/delivery
+            mkdir -p /var/www/market/admin'
           rsync -avz -e "ssh" ./front/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/front
-          rsync -avz -e "ssh" ./delivery/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/deliveries
-          rsync -avz -e "ssh" ./manege/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/manege
+          rsync -avz -e "ssh" ./delivery/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/delivery
+          rsync -avz -e "ssh" ./manege/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/admin
 
       - name: Restart Nginx
         run: ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'sudo service nginx restart'
