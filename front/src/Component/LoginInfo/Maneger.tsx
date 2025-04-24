@@ -9,7 +9,7 @@ interface IProps {
 
 const Maneger = ({ userDatas }: IProps): JSX.Element => {
   const manege = () => {
-    window.location.replace("https://www.dpclfk.com/market/admin/report");
+    window.location.replace("https://market.dpclfk.com/admin/report");
   };
   const btn = new Button("관리자 페이지", "bg-orange-400");
   return (
@@ -21,7 +21,9 @@ const Maneger = ({ userDatas }: IProps): JSX.Element => {
         </div>
         <div>
           <Link to={`/mystore?id=${userDatas.login?.id}`}>
-            <div className="ms-2 px-3 py-1 border rounded bg-blue-200 text-white">내정보</div>
+            <div className="ms-2 px-3 py-1 border rounded bg-blue-200 text-white">
+              내정보
+            </div>
           </Link>
         </div>
       </div>

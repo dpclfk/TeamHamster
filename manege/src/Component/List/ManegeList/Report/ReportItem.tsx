@@ -27,9 +27,12 @@ const Item = ({ item, idx }: IProps): JSX.Element => {
   const deletereport = useMutation({
     mutationKey: "delreport",
     mutationFn: async () => {
-      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/admin/report/${item.id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `${process.env.REACT_APP_SERVER_URL}/admin/report/${item.id}`,
+        {
+          withCredentials: true,
+        }
+      );
     },
     onSuccess(data) {
       queryClient.invalidateQueries("reportlist");
@@ -38,7 +41,7 @@ const Item = ({ item, idx }: IProps): JSX.Element => {
   });
 
   const onclick = () => {
-    window.location.replace(`https://www.dpclfk.com/product/${item.id}`);
+    window.location.replace(`https://market.dpclfk.com/product/${item.id}`);
   };
   return (
     <div className="px-5 py-2 flex items-center ">
