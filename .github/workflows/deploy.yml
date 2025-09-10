@@ -212,7 +212,10 @@ jobs:
 
       - name: server env
         working-directory: ./backend
-        run: ${{ secrets.SERVER_ENV }}
+        run: |
+          ${{ secrets.SERVER_ENV }}
+          echo "MONGOUSER=${{secrets.MONGO_USER}}" >> .env
+          echo "MONGOPASSWORD=${{secrets.MONGO_PASSWORD}}" >> .env
 
       - name: config json
         working-directory: ./backend
