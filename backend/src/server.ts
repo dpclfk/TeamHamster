@@ -22,7 +22,7 @@ app.set("port", process.env.PORT || 3080);
 // connect('아이디:비밀번호@주소:포트/admin
 app.set(
   "url",
-  `${process.env.MONGOUSER}:${process.env.MONGOPASSWORD}@${process.env.MONGURL}` ||
+  `mongodb://${process.env.MONGOUSER}:${process.env.MONGOPASSWORD}@${process.env.MONGURL}` ||
     "mongodb://localhost:27017/hamster"
 );
 
