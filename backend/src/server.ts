@@ -19,7 +19,8 @@ const app: Express = express();
 app.use(cookieParser(process.env.COOKIE || "test"));
 
 app.set("port", process.env.PORT || 3080);
-app.set("url", process.env.MONGURL || "mongodb://localhost:27017");
+app.set("url", process.env.MONGURL || "mongodb://localhost:27017/hamster");
+
 sequelize.sync({ force: false });
 
 app.use(morgan("dev"));
@@ -46,11 +47,18 @@ console.log(path.join(__dirname, "..", "uploads"));
 
 app.use("/marketapi", router);
 
-mongoose.connect(app.get("url"), {
-  dbName: "hamster",
-});
+// 연결된거 확인하기 위해 변경
+const connectMongoDB = async () => {
+  try {
+    await mongoose.connect(app.get("url"));
+    console.log("mongoose connection");
+  } catch (err) {
+    console.error("mongoose connection fail", err);
+  }
+};
+
 mongoose.connection.on("connected", () => {
-  console.log("mongoose connection");
+  console.log("mongoose 재연결");
 });
 
 console.log("test3");
@@ -123,6 +131,7 @@ const basicvalue = async () => {
     console.error(err);
   }
 };
+connectMongoDB();
 
 basicvalue();
 
