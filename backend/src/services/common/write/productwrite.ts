@@ -40,13 +40,18 @@ export default async (req: Request, res: Response) => {
     });
 
     const productdiscription = reqbody.discription;
+    console.log("banword check start");
     const banword = await bankeyword.find({}, { word: 1, _id: 0 });
+    console.log("banword check end");
 
+    console.log("banword index start");
     for (let i = 0; i < banword.length; i++) {
       if (productdiscription.indexOf(banword[i].word!) > -1) {
         throw Error("bankeyword");
       }
     }
+    console.log("banword index end");
+
     const write: Product = await Product.create(
       {
         title: reqbody.title,
