@@ -8,8 +8,15 @@ export default async (req: Request, res: Response) => {
       throw Error("short");
     }
     console.log(reqbody.keyword);
-    await bankeyword.create({ word: reqbody.keyword });
-    console.log("밴키워드 추가");
+    // await bankeyword.create({ word: reqbody.keyword });
+    // console.log("밴키워드 추가");
+
+    try {
+      const newBanKeyword = await bankeyword.create({ word: reqbody.keyword });
+      console.log("키워드 추가 성공:", newBanKeyword);
+    } catch (error: any) {
+      console.error("키워드 추가 실패:", error.message);
+    }
 
     res.json({ result: "ok" });
   } catch (err: any) {
