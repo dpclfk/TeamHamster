@@ -7,7 +7,9 @@ export default async (req: Request, res: Response) => {
     if (reqbody.keyword.length < 2) {
       throw Error("short");
     }
+    console.log(reqbody.keyword);
     await bankeyword.create({ word: reqbody.keyword });
+    console.log("밴키워드 추가");
 
     res.json({ result: "ok" });
   } catch (err: any) {
