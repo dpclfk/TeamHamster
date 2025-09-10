@@ -1,5 +1,11 @@
 import { Request, Response } from "express";
-import { Category, ExtraAddress, Product, Store, sequelize } from "../../../models";
+import {
+  Category,
+  ExtraAddress,
+  Product,
+  Store,
+  sequelize,
+} from "../../../models";
 import { Transaction } from "sequelize";
 import { bankeyword } from "../../../models/mongoDB";
 
@@ -62,12 +68,15 @@ export default async (req: Request, res: Response) => {
 
     res.json({ result: "ok" });
   } catch (err: any) {
+    console.log(err);
     console.error(err);
     await transaction.rollback();
     if (err.message == "not login") {
       res.status(400).json({ result: "not login" });
     } else if (err.message == "not category OR deliveryCost OR extraAddress") {
-      res.status(400).json({ result: "not category OR deliveryCost OR extraAddress" });
+      res
+        .status(400)
+        .json({ result: "not category OR deliveryCost OR extraAddress" });
     } else if (err.message == "bankeyword") {
       res.status(400).json({ result: "bankeyword" });
     } else {
