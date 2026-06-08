@@ -1,5 +1,14 @@
 # Hamster Market
 
+## Tech Stack
+
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white">
+<img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
+
 ## 햄스터 마켓
 
 - 중개 수수료 없이 택배 기사와 사용자를 직접 연결하고, 포인트 시스템으로 결제 안전성을 확보한 C2C 물류 마켓
@@ -10,7 +19,7 @@
 
 ## 프로젝트 인원
 
-- 4명
+- 4명 (Backend 1, Frontend 3)
 
 ## 프로젝트 목적
 
@@ -156,3 +165,74 @@ OAuth 2.0 : 간편로그인 사용
    검색어에 '아이'만 쳐도 아이폰이 나옴(다만 아이용품등이 나올수도있음)
    카테고리내 검색 가능하게 할 예정
    전자제품 카테고리에서 검색할경우 다른 카테고리물건은 검색안됨
+
+# Arcalive Clonecoding
+
+## Tech Stack
+
+<div align="left">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+  <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
+</div>
+
+## 아카라이브 클론코딩
+
+- 다주제, 다목적 커뮤니티 사이트 ‘아카라이브’의 핵심 기능을 구현한 커뮤니티 플랫폼
+
+## 프로젝트 기간
+
+- 2024.05.20 ~ 2024.06.04 (2주)
+
+## 프로젝트 인원
+
+- 3명 (Backend 1, Frontend 2)
+
+## 프로젝트 목적
+
+- Express.js 기반 백엔드 아키텍처 이해: Node.js 환경에서 Express 프레임워크를 활용해 RESTful API를 설계하고, 서버-데이터베이스 간의 효율적인 연동 프로세스 습득
+
+- 웹 표준 기반 UI 구현: HTML/CSS를 활용하여 사용자 친화적인 웹 화면을 구축하고, 백엔드 데이터와의 동적 바인딩 실습
+
+- 애자일 협업 프로세스 경험: 스프린트 단위의 기능 개발을 통해 변화하는 요구사항에 유연하게 대응하고 팀워크 강화
+
+## 주요 역할
+
+### Backend Developer
+
+- 서비스 핵심 도메인(게시판, 인증) API 설계 및 DB 모델링
+
+- 프론트엔드 팀과의 긴밀한 협업을 통한 API 인터페이스 구축 및 성능 최적화
+
+## 주요 구현 및 담당 업무
+
+### 관계형 데이터베이스(RDB) 설계 및 최적화
+
+- Sequelize ORM 활용: JS 객체와 DB 테이블을 매핑하여 데이터 관리의 생산성을 높이고, 팀원 간의 데이터 접근 방식을 표준화
+
+- ERD 기반 데이터 모델링: 서비스 도메인 간의 관계(1:N, M:N)를 ERD로 시각화하여 데이터 정규화를 수행하고 무결성 확보
+
+### 보안 및 커뮤니티 핵심 기능 구현
+
+- Session 기반 인증 시스템: 서버 측 세션을 통해 사용자 인증 상태를 안전하게 관리하여 보안 안정성 강화
+
+- 상호작용 시스템 구축: 추천/비추천, 계층형 댓글(답글) 기능을 구현하여 사용자 간 활발한 상호작용이 가능한 커뮤니티 비즈니스 로직 완성
+
+### 애자일 기반의 원활한 협업
+
+- API 명세서 관리: 개발 초기 단계에서 API 규격을 정의하여 프론트엔드-백엔드 간 병렬 개발 프로세스를 구축하고, 런타임 오류 사전 방지
+
+- 반복적 기능 고도화: 애자일 방법론에 따라 스프린트 단위로 기능을 개발하고, 팀 피드백을 실시간으로 수용하여 서비스 완성도 향상
+
+## 기술 역량
+
+### Backend Development
+
+Express.js: 미들웨어 구조를 활용한 확장성 있는 RESTful API 서버를 구축합니다.
+
+### Database Management
+
+MySQL (RDB): Sequelize ORM을 활용하여 관계형 데이터의 무결성을 보장하고, 효율적인 데이터 접근 구조를 설계합니다.
