@@ -34,7 +34,7 @@ const ManegeLayout = (): JSX.Element => {
   useQueryClient();
 
   const onclick = () => {
-    window.location.replace("http://market.dpclfk.com/");
+    window.location.replace("https://hamster-market.akdfid.kr/");
   };
 
   const onlogout = () => {

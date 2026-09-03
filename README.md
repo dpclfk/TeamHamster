@@ -1,5 +1,9 @@
 # Hamster Market
 
+## 배포 주소
+
+- [https://hamster-market.akdfid.kr](https://hamster-market.akdfid.kr)
+
 ## Tech Stack
 
 <div align="left">
@@ -7,9 +11,12 @@
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
   <img src="https://img.shields.io/badge/TypeORM-E84343?style=for-the-badge&logo=typeorm&logoColor=white"/>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"/>
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
   <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
+  <img src="https://img.shields.io/badge/OCI-F80000?style=for-the-badge&logo=oracle&logoColor=white"/>
+  <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PM2-2B037A?style=for-the-badge&logo=pm2&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white"/>
 </div>
 
 ## 햄스터 마켓
@@ -67,6 +74,11 @@
 - MySQL (RDB): ERD를 활용한 정밀한 데이터 모델링과 Sequelize ORM 연동을 통해 데이터 무결성을 보장하는 관계형 DB를 설계합니다.
 
 - MongoDB (NoSQL): Mongoose를 활용하여 로그 데이터나 실시간 위치 정보와 같은 비정형 데이터를 효율적으로 처리하는 스키마를 설계하고 관리합니다.
+
+### Infrastructure & DevOps
+
+- 클라우드 마이그레이션 경험: AWS EC2 기반으로 운영하다 비용 효율화를 위해 OCI(Oracle Cloud Infrastructure)로 인프라를 이전, 자체 서버에서 MySQL/MongoDB/Nginx를 직접 구성 및 운영
+- GitHub Actions CI/CD: main 브랜치 push 시 4개 서비스(백엔드, 일반/배송/관리자 프론트엔드)의 빌드, 테스트, 서버 배포(pm2 재시작 포함)까지 자동화한 파이프라인 구축
 
 # 구현전 회의록
 

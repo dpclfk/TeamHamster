@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "backend/**"
+      - "front/**"
+      - "delivery/**"
+      - "manege/**"
   workflow_dispatch:
 
 jobs:
@@ -16,7 +21,7 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.EC2_KEY }}
+          ssh-private-key: ${{ secrets.OCI_KEY }}
 
       - name: Ensute SSH directory exists
         run: |
@@ -24,11 +29,11 @@ jobs:
           chmod 700 ~/.ssh
 
       - name: ADD SSH known hosts
-        run: ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ secrets.OCI_HOST }} >> ~/.ssh/known_hosts
 
       - name: test node
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
           export NVM_DIR="$HOME/.nvm"
           if [ -s "$NVM_DIR/nvm.sh" ]; then
             . "$NVM_DIR/nvm.sh"
@@ -48,7 +53,7 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.EC2_KEY }}
+          ssh-private-key: ${{ secrets.OCI_KEY }}
 
       - name: Ensute SSH directory exists
         run: |
@@ -56,16 +61,16 @@ jobs:
           chmod 700 ~/.ssh
 
       - name: ADD SSH known hosts
-        run: ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ secrets.OCI_HOST }} >> ~/.ssh/known_hosts
 
       - name: check mysql
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
           sudo service mysql status'
 
       - name: test mysql user
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
           mysql -u ${{ secrets.MYSQL_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "SHOW DATABASES;"'
 
   test_mongo:
@@ -77,7 +82,7 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.EC2_KEY }}
+          ssh-private-key: ${{ secrets.OCI_KEY }}
 
       - name: Ensute SSH directory exists
         run: |
@@ -85,17 +90,17 @@ jobs:
           chmod 700 ~/.ssh
 
       - name: ADD SSH known hosts
-        run: ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ secrets.OCI_HOST }} >> ~/.ssh/known_hosts
 
       - name: check mongo
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
           sudo service mongod start
           sudo service mongod status'
 
       - name: test mongo user
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
           mongosh -u ${{ secrets.MONGO_USER }} -p ${{ secrets.MONGO_PASSWORD }} \
           --authenticationDatabase admin -eval "db.adminCommand({ listDatabases:1 })"'
 
@@ -109,7 +114,7 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.EC2_KEY }}
+          ssh-private-key: ${{ secrets.OCI_KEY }}
 
       - name: Ensute SSH directory exists
         run: |
@@ -117,7 +122,7 @@ jobs:
           chmod 700 ~/.ssh
 
       - name: ADD SSH known hosts
-        run: ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ secrets.OCI_HOST }} >> ~/.ssh/known_hosts
 
       - name: Install Dependencies of Front
         working-directory: ./front
@@ -167,21 +172,21 @@ jobs:
         working-directory: ./manege/build
         run: rm -rf ./**/*/*.map
 
-      - name: Copy Files to EC2
+      - name: Copy Files to Server
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
-            rm -rf /var/www/market/front
-            mkdir -p /var/www/market/front
-            rm /var/www/market/delivery
-            mkdir -p /var/www/market/delivery
-            rm /var/www/market/admin
-            mkdir -p /var/www/market/admin'
-          rsync -avz -e "ssh" ./front/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/front
-          rsync -avz -e "ssh" ./delivery/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/delivery
-          rsync -avz -e "ssh" ./manege/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/admin
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
+            rm -rf /var/www/hamster-market/front
+            mkdir -p /var/www/hamster-market/front
+            rm /var/www/hamster-market/delivery
+            mkdir -p /var/www/hamster-market/delivery
+            rm /var/www/hamster-market/admin
+            mkdir -p /var/www/hamster-market/admin'
+          rsync -avz -e "ssh" ./front/build/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/hamster-market/front
+          rsync -avz -e "ssh" ./delivery/build/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/hamster-market/delivery
+          rsync -avz -e "ssh" ./manege/build/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/hamster-market/admin
 
       - name: Restart Nginx
-        run: ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'sudo service nginx restart'
+        run: ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} 'sudo service nginx restart'
 
   deploy_back:
     runs-on: ubuntu-latest
@@ -196,7 +201,7 @@ jobs:
       - name: Add SSH key
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.EC2_KEY }}
+          ssh-private-key: ${{ secrets.OCI_KEY }}
 
       - name: Ensure SSH directory exists
         run: |
@@ -204,7 +209,7 @@ jobs:
           chmod 700 ~/.ssh
 
       - name: Add SSH known hosts
-        run: ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ secrets.OCI_HOST }} >> ~/.ssh/known_hosts
 
       - name: Install Dependencies of Back
         working-directory: ./backend
@@ -235,16 +240,16 @@ jobs:
         working-directory: ./backend
         run: npx tsc
 
-      - name: Copy Files to EC2
+      - name: Copy Files to Server
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
-            rm -rf /var/www/market/backend
-            mkdir -p /var/www/market/backend/uploads'
-          rsync -avz -e "ssh" ./backend/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/backend
-          rsync -avz -e "ssh" ./backend/package.json ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/backend/package.json
-          rsync -avz -e "ssh" ./backend/.env ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/backend/.env
-          rsync -avz -e "ssh" ./backend/uploads/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/market/backend/uploads
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
+            rm -rf /var/www/hamster-market/backend
+            mkdir -p /var/www/hamster-market/backend/uploads'
+          rsync -avz -e "ssh" ./backend/build/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/hamster-market/backend
+          rsync -avz -e "ssh" ./backend/package.json ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/hamster-market/backend/package.json
+          rsync -avz -e "ssh" ./backend/.env ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/hamster-market/backend/.env
+          rsync -avz -e "ssh" ./backend/uploads/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/hamster-market/backend/uploads
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
             export NVM_DIR="$HOME/.nvm"
             if [ -s "$NVM_DIR/nvm.sh" ]; then
               . "$NVM_DIR/nvm.sh"
@@ -254,12 +259,12 @@ jobs:
             fi
 
             nvm use --lts
-            cd /var/www/market/backend
+            cd /var/www/hamster-market/backend
             npm i --production'
 
       - name: Start Server
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
+          ssh ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} '
             export NVM_DIR="$HOME/.nvm"
             if [ -s "$NVM_DIR/nvm.sh" ]; then
               . "$NVM_DIR/nvm.sh"
@@ -271,6 +276,6 @@ jobs:
             nvm use --lts
             
             npm install -g pm2
-            pm2 stop marketbackend
-            pm2 delete marketbackend
-            pm2 start /var/www/market/backend/src/server.js --name "marketbackend"'
+            pm2 stop hamster-market-backend
+            pm2 delete hamster-market-backend
+            pm2 start /var/www/hamster-market/backend/src/server.js --name "hamster-market-backend"'
